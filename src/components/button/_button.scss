@@ -1,0 +1,19 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  margin-left: auto;
+  background: $blue;
+  color: $white;
+  border-radius: 12px;
+  padding: 12px 35px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 2.75px;
+}

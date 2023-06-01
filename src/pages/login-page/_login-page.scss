@@ -1,0 +1,66 @@
+.login-page__logo {
+  margin: 0;
+  margin-bottom: 167px;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 43px;
+  color: $blue;
+}
+
+.login-page__form-wrapper {
+  @include flex-centring;
+}
+
+.login-page__form-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 56px;
+  color: #222222;
+  margin-bottom: 70px;
+}
+
+.login-page__input-wrapper {
+  @include flex-centring;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.login-page__form-input {
+  width: 499px;
+  padding: 25px 0 25px 22px;
+  border: 1px solid rgba(15, 24, 38, 0.2);
+  border-radius: 4px;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+  opacity: 0.5;
+  margin-bottom: 30px;
+}
+
+.login-page__forgot-pass {
+  font-style: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+  margin-left: auto;
+}
+
+.login-page__button-wrapper {
+  @include flex-centring;
+}
+
+.login-page__form-button {
+  background: $blue;
+  border-radius: 4px;
+  padding: 16px 50px;
+  line-height: 40px;
+  color: $white;
+  border: 0;
+  cursor: pointer;
+
+  &:active {
+    background: #021a3b;
+  }
+}

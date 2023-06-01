@@ -1,20 +1,21 @@
 import { useRoutes } from "react-router-dom";
-// import { AddPost } from "../pages";
+import { MainPage } from "../pages/main-page/main-page";
+import { ModelsPage } from "../pages/models-page";
 
 const routes = [
   {
     path: "/",
     element: <MainPage></MainPage>,
   },
-  // {
-  //   path: "posts/:id",
-  //   children: [
-  //     {
-  //       path: "",
-  //       element: <PostInfo></PostInfo>,
-  //     },
-  //   ],
-  // },
+  {
+    path: "model/:id",
+    children: [
+      {
+        path: "",
+        element: <ModelsPage></ModelsPage>,
+      },
+    ],
+  },
   // {
   //   path: "add-post",
   //   element: <AddPost></AddPost>,

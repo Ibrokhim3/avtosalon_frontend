@@ -1,0 +1,24 @@
+.aside {
+  position: fixed;
+  padding: 156px 24px 24px 24px;
+  gap: 10px;
+  width: 340px;
+  height: 100vh;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background: $white;
+}
+
+.aside__item:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.aside__link {
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  color: #6f767e;
+}

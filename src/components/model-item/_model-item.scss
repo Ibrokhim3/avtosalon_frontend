@@ -1,0 +1,20 @@
+.model_item_car-brand {
+  margin: 0;
+  width: 289px;
+  text-align: center;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: $text-color;
+}
+
+.model-item__car-price {
+  margin: 0;
+  font-weight: 600;
+  color: $text-color;
+}
+
+.model-item__car-price-text {
+  margin: 0;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+}
