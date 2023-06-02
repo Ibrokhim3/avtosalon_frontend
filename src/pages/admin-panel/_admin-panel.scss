@@ -1,5 +1,6 @@
 .admin-panel {
   background: #e3e3e3;
+  height: 100vh;
 }
 
 //header
@@ -65,3 +66,181 @@
   justify-content: space-between;
   margin-bottom: 44px;
 }
+
+//table
+
+.admin-panel__table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.admin-panel__table tr {
+  border-bottom: 15px solid transparent;
+}
+
+.admin-panel__table thead {
+  border-bottom: 65px solid transparent;
+}
+
+.admin-panel__table th {
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.01em;
+  color: #6f767e;
+  margin-right: 24px;
+  text-align: left;
+  border-right: 40px solid transparent;
+}
+
+.admin-panel__table td {
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  color: #1a1d1f;
+  border-right: 40px solid transparent;
+
+  &:nth-child(2) {
+    font-weight: 700;
+  }
+}
+
+//pagination
+
+.admin-panel__pagination {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  justify-content: center;
+}
+
+.admin-panel__pages-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-panel__page {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  color: #1a1d1f;
+}
+
+.admin-panel__arrow-forward {
+  // padding: 12px 10px;
+  // background: #fcfcfc;
+  // border: 2px solid #efefef;
+  // border-radius: 40px;
+}
+
+//modal
+
+.admin-panel__modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba($color: #f4f4f4, $alpha: 0.8);
+  // left: calc(50% - 549px / 2);
+  // top: calc(50% - 532px / 2);
+  // overflow: auto; /* Enable scroll if needed */
+}
+
+.admin-panel__modal-content {
+  position: relative;
+  margin: 125px auto;
+  max-width: 1164px;
+  // height: 532px;
+  background: $white;
+  border-radius: 20px;
+  padding: 34px 24px;
+}
+
+.admin-panel__modal-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px 12px 12px;
+  gap: 10px;
+
+  width: 36px;
+  height: 36px;
+
+  background: #efefef;
+  border-radius: 36px;
+  cursor: pointer;
+  margin-left: auto;
+
+  &::before {
+    content: url("../../assets/icons/cross.svg");
+  }
+}
+
+.admin-panel__modal-header {
+  display: flex;
+  margin-bottom: 28px;
+}
+
+.admin-panel__modal-title {
+  margin: 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  color: #1a1d1f;
+  margin-left: 16px;
+}
+
+.admin-panel__modal-text {
+  margin: 0;
+  line-height: 35px;
+  color: #000000;
+  margin-bottom: 90px;
+}
+
+.admin-panel__modal-button {
+  display: block;
+  margin: 0 auto;
+  border: none;
+  outline: none;
+  padding: 8px 33px;
+  text-transform: uppercase;
+  background: $blue;
+  border-radius: 4px;
+  line-height: 35px;
+  color: $white;
+  cursor: pointer;
+}
+
+.admin-panel__modal-input-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-panel__modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+//buttons
+
+.control-button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+// .admin-panel__td-button {
+//   // border-right: 0 solid transparent;
+// }

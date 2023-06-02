@@ -1,0 +1,35 @@
+.input-label {
+  font-family: "Inter";
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  color: #33383f;
+}
+
+.input {
+  width: 548px;
+  height: 48px;
+  padding: 12px;
+  background: #f4f4f4;
+  border-radius: 12px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+.input-file {
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    background: $blue;
+  }
+}
+
+.input-file::-webkit-file-upload-button {
+  display: none;
+}

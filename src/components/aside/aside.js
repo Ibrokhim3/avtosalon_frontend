@@ -13,6 +13,15 @@ export const Aside = () => {
         <li className="aside__item">
           <Link className="aside__link">Savollar</Link>
         </li>
+        <li className="aside__item">
+          <Link className="aside__link">Kategoriyalar</Link>
+        </li>
+        <li className="aside__item">
+          <Link className="aside__link">Masinalar</Link>
+        </li>
+        <li className="aside__item">
+          <Link className="aside__link">Foydalanuvchilar</Link>
+        </li>
       </ul>
     </div>
   );
