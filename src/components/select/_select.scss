@@ -1,0 +1,46 @@
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+}
+
+.select::-ms-expand {
+  display: none;
+}
+
+.select-wrapper {
+  display: flex;
+  align-items: center;
+  // width: 100%;
+  // min-width: 15ch;
+  // max-width: 30ch;
+  width: 548px; //custom
+  // border: 1px solid var(--select-border);
+  background: #f4f4f4;
+  border-radius: 12px;
+  padding: 12px 20px 12px 12px;
+  color: $text-color;
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    width: 15px;
+    height: 9px;
+    background: url("../../assets/icons/input-button.svg") no-repeat;
+    display: block;
+  }
+}

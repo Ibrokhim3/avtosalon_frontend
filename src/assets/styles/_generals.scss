@@ -32,3 +32,36 @@ ul {
   white-space: nowrap;
   width: 1px;
 }
+
+.input-label {
+  font-family: "Inter";
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  color: #33383f;
+
+}
+
+.textarea {
+  padding: 12px;
+  width: 548px;
+  height: 200px;
+
+  background: #f4f4f4;
+  border-radius: 12px;
+  border: 0;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+
+  letter-spacing: -0.015em;
+
+  color: #9a9fa5;
+  resize: none;
+}

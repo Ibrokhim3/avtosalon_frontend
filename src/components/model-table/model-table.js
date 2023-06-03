@@ -52,7 +52,7 @@ export const ModelTable = ({
               data-type="edit-model"
               onClick={() => {
                 // elModal.style.display = "block";
-                dispath(modelsAction.setFormType("edit-model"));
+                dispath(modelsAction.setFormType("edit"));
               }}
               className="control-button"
             >

@@ -40,7 +40,7 @@ export const CartegoryTable = ({
               data-type="edit-category"
               onClick={() => {
                 // elModal.style.display = "block";
-                dispath(modelsAction.setFormType("edit-category"));
+                dispath(modelsAction.setFormType("edit"));
               }}
               className="control-button"
             >

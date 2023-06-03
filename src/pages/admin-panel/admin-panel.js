@@ -1,4 +1,4 @@
-import { Button, CartegoryTable, Container, Input } from "../../components";
+import { Button, CartegoryTable, Container, Modal } from "../../components";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -51,11 +51,18 @@ export const AdminPanel = () => {
                 <Button
                   onClick={(e) => {
                     // elModal.style.display = "block";
-                    dispath(modelsAction.setFormType("add-category"));
+                    dispath(modelsAction.setFormType("add"));
                   }}
                   style={{ width: 192, padding: "12px 17.5px", margin: 0 }}
                 >
-                  Kategoriya qo’shish
+                  {tableType === "category"
+                    ? "Kategoriya"
+                    : tableType === "cars"
+                    ? "Mashina"
+                    : tableType === "users"
+                    ? "Foydalanuvchi"
+                    : ""}
+                  &nbsp;qo'shish
                 </Button>
               </div>
             </div>
@@ -99,56 +106,8 @@ export const AdminPanel = () => {
           </div>
         </Container>
       </div>
+      <Modal elModal={elModal}></Modal>
 
-      <div
-        style={formType ? { display: "block" } : null}
-        className="admin-panel__modal"
-      >
-        <div className="admin-panel__modal-content">
-          <div className="admin-panel__modal-header">
-            <span
-              style={{ background: "#CABDFF" }}
-              className="admin-panel__indicator"
-            ></span>
-            <p className="admin-panel__modal-title">
-              {formType === "edit-category"
-                ? "Kategoriyani o'zgartirish"
-                : "Kategoriya qo'shish"}
-            </p>
-            <span
-              className="admin-panel__modal-close"
-              onClick={() => {
-                elModal.style.display = "none";
-                dispath(modelsAction.setFormType(""));
-              }}
-            ></span>
-          </div>
-          <form className="admin-panel__modal-form">
-            <div className="admin-panel__modal-input-wrapper">
-              <Input placeholder={"BYD"} id={"categoryTextInput"}>
-                Markasi
-              </Input>
-              <Input
-                type={"file"}
-                placeholder={"Yuklash"}
-                id={"categoryFileInput"}
-              >
-                Rasm
-              </Input>
-            </div>
-
-            <Button
-              onClick={() => {
-                elModal.style.display = "none";
-                dispath(modelsAction.setFormType(""));
-              }}
-              style={{ marginTop: 40 }}
-            >
-              Saqlash
-            </Button>
-          </form>
-        </div>
-      </div>
       <Aside></Aside>
     </div>
   );

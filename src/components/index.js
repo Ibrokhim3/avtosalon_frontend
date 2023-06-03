@@ -4,3 +4,7 @@ export * from "./model-item";
 export * from "./input-text";
 export * from "./model-table";
 export * from "./category-table";
+export * from "./modal";
+export * from "./category-form";
+export * from "./model-form";
+export * from "./select";

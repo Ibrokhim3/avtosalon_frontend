@@ -7,7 +7,7 @@ export const { actions: modelsAction, reducer: modelsReducer } = createSlice({
     loading: false,
     error: null,
     formType: "",
-    tableType: "",
+    tableType: "category",
     searchValue: "",
     filterValue: null,
     dateValue: "",
