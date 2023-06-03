@@ -8,3 +8,5 @@ export * from "./modal";
 export * from "./category-form";
 export * from "./model-form";
 export * from "./select";
+export * from "./users-form";
+export * from "./users-table";

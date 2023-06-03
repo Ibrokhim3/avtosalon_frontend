@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { modelsAction } from "../../store";
 import { CartegoryForm } from "../category-form";
 import { ModelForm } from "../model-form";
+import { UsersForm } from "../users-form";
 
 export const Modal = ({ elModal }) => {
   const dispath = useDispatch();
@@ -27,6 +28,10 @@ export const Modal = ({ elModal }) => {
               ? "Mashinani o'zgartirish"
               : formType === "add" && tableType === "cars"
               ? "Mashina qo'shish"
+              : formType === "add" && tableType === "users"
+              ? "Foydalanuvchi qo'shish"
+              : formType === "edit" && tableType === "users"
+              ? "Foydalanuvchi ma'lumotlarini o'zgartirish"
               : ""}
           </p>
           <span
@@ -41,6 +46,8 @@ export const Modal = ({ elModal }) => {
           <CartegoryForm elModal={elModal}></CartegoryForm>
         ) : tableType === "cars" ? (
           <ModelForm elModal={elModal}></ModelForm>
+        ) : tableType === "users" ? (
+          <UsersForm></UsersForm>
         ) : (
           ""
         )}

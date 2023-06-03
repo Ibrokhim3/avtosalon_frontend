@@ -1,4 +1,10 @@
-import { Button, CartegoryTable, Container, Modal } from "../../components";
+import {
+  Button,
+  CartegoryTable,
+  Container,
+  Modal,
+  UsersTable,
+} from "../../components";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -71,9 +77,9 @@ export const AdminPanel = () => {
             ) : tableType === "cars" ? (
               <ModelTable></ModelTable>
             ) : tableType === "users" ? (
-              ""
+              <UsersTable></UsersTable>
             ) : (
-              ""
+              <CartegoryTable></CartegoryTable>
             )}
             {/* <ModelTable></ModelTable> */}
 
