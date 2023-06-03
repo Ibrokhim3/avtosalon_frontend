@@ -1,20 +1,20 @@
-import { Button, Container, Input, InputText } from "../../components";
+import { Button, CartegoryTable, Container, Input } from "../../components";
 
-import avatarImg from "../../assets/icons/Avatar.svg";
-import arrowRight from "../../assets/icons/arrow-right.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import arrowForward from "../../assets/icons/arrow-forward.svg";
 import arrowLeft from "../../assets/icons/arrow-left.svg";
+import avatarImg from "../../assets/icons/Avatar.svg";
 import notifIcon from "../../assets/icons/Union.svg";
-import trashIcon from "../../assets/icons/trash.svg";
-import editIcon from "../../assets/icons/edit.svg";
 import { Aside } from "../../components/aside";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { ModelTable } from "../../components/model-table";
+import { modelsAction } from "../../store";
 
 export const AdminPanel = () => {
   const elModal = document.querySelector(".admin-panel__modal");
 
-  const [formType, setFormType] = useState("");
+  const dispath = useDispatch();
+  const { formType, tableType } = useSelector((state) => state.models);
 
   return (
     <div className="admin-panel">
@@ -37,13 +37,21 @@ export const AdminPanel = () => {
             <div className="admin-panel__top-wrapper">
               <div className="admin-panel__left-wrapper">
                 <span className="admin-panel__indicator"></span>
-                <p className="admin-panel__text">Kategoriyalar</p>
+                <p className="admin-panel__text">
+                  {tableType === "category"
+                    ? "Kategoriyalar"
+                    : tableType === "cars"
+                    ? "Mashinalar"
+                    : tableType === "users"
+                    ? "Foydalanuvchilar"
+                    : "Kategoriyalar"}
+                </p>
               </div>
               <div className="admin-panel__button-wrapper">
                 <Button
                   onClick={(e) => {
-                    elModal.style.display = "block";
-                    setFormType("");
+                    // elModal.style.display = "block";
+                    dispath(modelsAction.setFormType("add-category"));
                   }}
                   style={{ width: 192, padding: "12px 17.5px", margin: 0 }}
                 >
@@ -51,57 +59,17 @@ export const AdminPanel = () => {
                 </Button>
               </div>
             </div>
-            {/* <table className="admin-panel__table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Markasi</th>
-                  <th>Gearbook</th>
-                  <th>Tanirovkasi</th>
-                  <th>Motor</th>
-                  <th>Color</th>
-                  <th>Year</th>
-                  <th>Distance</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1.</td>
-                  <td>BYD</td>
-                  <td>Sinxron karobka</td>
-                  <td>Yoq</td>
-                  <td>300kw/soat</td>
-                  <td>2023</td>
-                  <td>Oq</td>
-                  <td>0 km</td>
-                  <td className="admin-panel__td-button">
-                    <button
-                      data-type="delete-category"
-                      className="control-button"
-                    >
-                      <img width={22} src={trashIcon} alt="delete/trash" />
-                    </button>
-                  </td>
-                  <td className="">
-                    <button
-                      data-type="edit-category"
-                      onClick={() => {
-                        elModal.style.display = "block";
-                        setFormType("edit-category");
-                      }}
-                      className="control-button"
-                    >
-                      <img width={22} src={editIcon} alt="edit/pen" />
-                    </button>
-                  </td>
-                  <td>
-                    <Link>
-                      <img src={arrowRight} alt="arrow-right" />
-                    </Link>
-                  </td>
-                </tr>
-              </tbody>
-            </table> */}
+            {tableType === "category" ? (
+              <CartegoryTable></CartegoryTable>
+            ) : tableType === "cars" ? (
+              <ModelTable></ModelTable>
+            ) : tableType === "users" ? (
+              ""
+            ) : (
+              ""
+            )}
+            {/* <ModelTable></ModelTable> */}
+
             <div className="admin-panel__pagination">
               <Link>
                 <img src={arrowLeft} alt="arrow-left" />
@@ -132,7 +100,10 @@ export const AdminPanel = () => {
         </Container>
       </div>
 
-      <div className="admin-panel__modal">
+      <div
+        style={formType ? { display: "block" } : null}
+        className="admin-panel__modal"
+      >
         <div className="admin-panel__modal-content">
           <div className="admin-panel__modal-header">
             <span
@@ -146,7 +117,10 @@ export const AdminPanel = () => {
             </p>
             <span
               className="admin-panel__modal-close"
-              onClick={() => (elModal.style.display = "none")}
+              onClick={() => {
+                elModal.style.display = "none";
+                dispath(modelsAction.setFormType(""));
+              }}
             ></span>
           </div>
           <form className="admin-panel__modal-form">
@@ -164,7 +138,10 @@ export const AdminPanel = () => {
             </div>
 
             <Button
-              onClick={() => (elModal.style.display = "none")}
+              onClick={() => {
+                elModal.style.display = "none";
+                dispath(modelsAction.setFormType(""));
+              }}
               style={{ marginTop: 40 }}
             >
               Saqlash
