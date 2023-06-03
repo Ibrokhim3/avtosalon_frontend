@@ -44,7 +44,6 @@ ul {
   line-height: 24px;
   letter-spacing: -0.01em;
   color: #33383f;
-
 }
 
 .textarea {
@@ -64,4 +63,22 @@ ul {
 
   color: #9a9fa5;
   resize: none;
+}
+
+.switch-button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.action-button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.count {
+  margin-left: 8px;
 }

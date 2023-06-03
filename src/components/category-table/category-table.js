@@ -48,9 +48,18 @@ export const CartegoryTable = ({
             </button>
           </td>
           <td>
-            <Link>
+            <button
+              className="switch-button"
+              data-id=""
+              onClick={() => {
+                dispath(modelsAction.setTableType("cars"));
+              }}
+            >
               <img src={arrowRight} alt="arrow-right" />
-            </Link>
+            </button>
+            {/* <Link>
+              <img src={arrowRight} alt="arrow-right" />
+            </Link> */}
           </td>
         </tr>
       </tbody>

@@ -7,6 +7,13 @@
   color: $text-color;
 }
 
+.model-item__button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 16px;
+}
+
 .model-item__car-price {
   margin: 0;
   font-weight: 600;

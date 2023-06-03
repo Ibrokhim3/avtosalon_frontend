@@ -7,7 +7,7 @@ import arrowIcon from "../../assets/icons/Vector.svg";
 export const Header = ({ style, children, icon }) => {
   return (
     <header style={style} className="header">
-      <Button>
+      <Button style={{ width: 260 }} to={"admin-panel"}>
         {" "}
         <img src={adminIcon} alt="admin-icon" />
         Admin panelga o‘tish

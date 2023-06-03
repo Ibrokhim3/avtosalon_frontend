@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 
+import cortIcon from "../../assets/icons/cart.svg";
+import likeIcon from "../../assets/icons/like.svg";
+
 export const ModelItem = ({
   style,
   children,
@@ -25,6 +28,15 @@ export const ModelItem = ({
           {modelPrice}
         </p>
       </Link>
+      <div className="model-item__button-wrapper">
+        <button className="action-button">
+          <img style={{ width: 25 }} src={cortIcon} alt="buy" />
+        </button>
+        <button className="action-button">
+          <img style={{ width: 25 }} src={likeIcon} alt="like" />
+          <span className="count">1</span>
+        </button>
+      </div>
     </li>
   );
 };

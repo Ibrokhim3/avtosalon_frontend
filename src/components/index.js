@@ -10,3 +10,4 @@ export * from "./model-form";
 export * from "./select";
 export * from "./users-form";
 export * from "./users-table";
+export * from "./icons";

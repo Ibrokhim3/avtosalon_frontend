@@ -54,9 +54,15 @@ export const UsersTable = ({
             </button>
           </td>
           <td>
-            <Link>
+            <button
+              className="switch-button"
+              data-id=""
+              onClick={() => {
+                dispath(modelsAction.setTableType("users-cars"));
+              }}
+            >
               <img src={arrowRight} alt="arrow-right" />
-            </Link>
+            </button>
           </td>
         </tr>
       </tbody>

@@ -8,7 +8,7 @@ function App() {
       {/* <ConfigRoutes></ConfigRoutes> */}
       {/* <ModelsPage></ModelsPage> */}
       {/* <ModelInfoPage></ModelInfoPage> */}
-      <AdminPanel></AdminPanel>
+      {/* <AdminPanel></AdminPanel> */}
       {/* <LoginPage></LoginPage> */}
     </div>
   );

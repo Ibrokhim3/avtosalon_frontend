@@ -50,26 +50,32 @@ export const AdminPanel = () => {
                     ? "Mashinalar"
                     : tableType === "users"
                     ? "Foydalanuvchilar"
-                    : "Kategoriyalar"}
+                    : tableType === "users-cars"
+                    ? "Foydalanuvchiga tegishli mashinalar"
+                    : ""}
                 </p>
               </div>
               <div className="admin-panel__button-wrapper">
-                <Button
-                  onClick={(e) => {
-                    // elModal.style.display = "block";
-                    dispath(modelsAction.setFormType("add"));
-                  }}
-                  style={{ width: 192, padding: "12px 17.5px", margin: 0 }}
-                >
-                  {tableType === "category"
-                    ? "Kategoriya"
-                    : tableType === "cars"
-                    ? "Mashina"
-                    : tableType === "users"
-                    ? "Foydalanuvchi"
-                    : ""}
-                  &nbsp;qo'shish
-                </Button>
+                {formType !== "users-cars" ? (
+                  <Button
+                    onClick={(e) => {
+                      // elModal.style.display = "block";
+                      dispath(modelsAction.setFormType("add"));
+                    }}
+                    style={{ width: 192, padding: "12px 17.5px", margin: 0 }}
+                  >
+                    {tableType === "category"
+                      ? "Kategoriya"
+                      : tableType === "cars"
+                      ? "Mashina"
+                      : tableType === "users"
+                      ? "Foydalanuvchi"
+                      : ""}
+                    &nbsp;qo'shish
+                  </Button>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             {tableType === "category" ? (
@@ -78,10 +84,11 @@ export const AdminPanel = () => {
               <ModelTable></ModelTable>
             ) : tableType === "users" ? (
               <UsersTable></UsersTable>
+            ) : tableType === "users-cars" ? (
+              <ModelTable></ModelTable>
             ) : (
-              <CartegoryTable></CartegoryTable>
+              ""
             )}
-            {/* <ModelTable></ModelTable> */}
 
             <div className="admin-panel__pagination">
               <Link>
@@ -101,6 +108,7 @@ export const AdminPanel = () => {
                   <Link className="admin-panel__page">...</Link>
                 </li>
               </ul>
+
               <Link>
                 <img
                   className="admin-panel__arrow-forward"

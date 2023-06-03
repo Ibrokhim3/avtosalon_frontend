@@ -1,4 +1,5 @@
 import { useRoutes } from "react-router-dom";
+import { AdminPanel, LoginPage } from "../pages";
 import { MainPage } from "../pages/main-page/main-page";
 import { ModelsPage } from "../pages/models-page";
 
@@ -16,18 +17,23 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: "add-post",
-  //   element: <AddPost></AddPost>,
-  // },
-  // {
-  //   path: "login",
-  //   element: <LoginPage></LoginPage>,
-  // },
-  // {
-  //   path: "admin-panel",
-  //   element: token ? <AdminPanel></AdminPanel> : <LoginPage></LoginPage>,
-  // },
+  {
+    path: "login",
+    element: <LoginPage></LoginPage>,
+  },
+  {
+    path: "admin-panel",
+    element: <AdminPanel></AdminPanel>,
+  },
+  {
+    path: "admin-panel/:id",
+    children: [
+      {
+        path: "",
+        element: <AdminPanel></AdminPanel>,
+      },
+    ],
+  },
 ];
 
 export const ConfigRoutes = () => {
