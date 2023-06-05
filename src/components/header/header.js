@@ -10,6 +10,7 @@ export const Header = ({ style, children, icon }) => {
       <Button style={{ width: 260 }} to={"admin-panel"}>
         {" "}
         <img src={adminIcon} alt="admin-icon" />
+        {/* Login */}
         Admin panelga o‘tish
       </Button>
       <div className="main-page__title-wrapper">

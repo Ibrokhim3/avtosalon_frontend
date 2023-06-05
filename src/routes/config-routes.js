@@ -1,5 +1,5 @@
 import { useRoutes } from "react-router-dom";
-import { AdminPanel, LoginPage } from "../pages";
+import { AdminPanel, LoginPage, SignupPage } from "../pages";
 import { MainPage } from "../pages/main-page/main-page";
 import { ModelsPage } from "../pages/models-page";
 
@@ -20,6 +20,10 @@ const routes = [
   {
     path: "login",
     element: <LoginPage></LoginPage>,
+  },
+  {
+    path: "signup",
+    element: <SignupPage></SignupPage>,
   },
   {
     path: "admin-panel",

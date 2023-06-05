@@ -1,37 +1,48 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useFormAction, useNavigate } from "react-router-dom";
 import { Container } from "../../components";
 import { modelsAction } from "../../store";
 
-export const LoginPage = () => {
+export const SignupPage = () => {
+  const [file, setFile] = useState(null);
   const { loading } = useSelector((state) => state.models);
-
-  const styles = {
-    opacity: loading ? 0.7 : 1,
-  };
 
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
-  const onLoginSubmit = (evt) => {
+  const styles = {
+    opacity: loading ? 0.7 : 1,
+  };
+
+  const onFileChange = async (e) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const onRegSubmit = (evt) => {
     evt.preventDefault();
     dispatch(modelsAction.setLoading(true));
 
     const {
       inputPass: { value: password },
+      inputPass2: { value: password2 },
       inputEmail: { value: userEmail },
     } = evt.target;
 
-    const user = {
-      userEmail,
-      password,
-    };
+    const formData = new FormData();
 
-    fetch("http://localhost:2004/avtosalon/login", {
+    formData.append("userEmail", userEmail);
+    formData.append("password", password);
+    formData.append("password2", password2);
+    formData.append("profileImg", file);
+
+    fetch("http://localhost:2004/avtosalon/signup", {
       method: "POST",
-      headers: { "Content-type": "Application/json" },
-      body: JSON.stringify(user),
+      // headers: { "Content-type": "Application/json" },
+      body: formData,
     })
       .then((res) => {
         if (res.status === 201) {
@@ -40,10 +51,9 @@ export const LoginPage = () => {
         return Promise.reject(res);
       })
       .then((data) => {
-        localStorage.setItem("token", data.token);
         dispatch(modelsAction.setLoading(false));
-        alert(data.msg);
-        navigate("/");
+        alert(data);
+        navigate("/login");
       })
       .catch((err) => {
         alert(err);
@@ -53,8 +63,8 @@ export const LoginPage = () => {
   return (
     <Container style={{ marginTop: "60px", height: "100vh" }}>
       <div className="login-page__form-wrapper">
-        <form onSubmit={onLoginSubmit} className="login-page__form">
-          <p className="login-page__form-title">Tizimga kirish</p>
+        <form onSubmit={onRegSubmit} className="login-page__form">
+          <p className="login-page__form-title">Ro'yxatdan o'tish</p>
           <div className="login-page__input-wrapper">
             <input
               id="inputEmail"
@@ -68,18 +78,38 @@ export const LoginPage = () => {
               type="password"
               placeholder="Parol"
             />
-            <div className="login-page__span-wrapper">
+            <input
+              id="inputPass2"
+              className="login-page__form-input"
+              type="password"
+              placeholder="Parol ni takrorlang"
+            />
+            <label
+              className="login-page__form-title login-page__file-label"
+              htmlFor="inputFile"
+            >
+              Profil uchun rasm yuklang
+              <input
+                onChange={onFileChange}
+                id="inputFile"
+                className="signup__upload-input"
+                type="file"
+                accept="image/*"
+                placeholder="Profil uchun rasm yuklang"
+              />
+            </label>
+            {/* <div className="login-page__span-wrapper">
               <Link
                 style={{ margin: 0 }}
                 className="login-page__forgot-pass"
-                to={"/signup"}
+                to={"sighup"}
               >
                 Ro'yxatdan o'tish
               </Link>
               <span className="login-page__forgot-pass">
                 Parolni unutdingizmi?
               </span>
-            </div>
+            </div> */}
           </div>
           <div className="login-page__button-wrapper">
             <button
@@ -87,7 +117,7 @@ export const LoginPage = () => {
               type="submit"
               className="login-page__form-button"
             >
-              Kirish
+              Ro'yxatdan o'tish
             </button>
           </div>
         </form>

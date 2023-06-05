@@ -23,7 +23,7 @@
 .login-page__input-wrapper {
   @include flex-centring;
   flex-direction: column;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .login-page__form-input {
@@ -70,4 +70,30 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.signup__upload-input {
+  &::file-selector-button {
+    border: none;
+    outline: none;
+    background: #97a922fe;
+    border-radius: 3px;
+    padding: 16px 35px;
+    font-size: 14px;
+    line-height: 17px;
+    color: $white;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+  }
+  &::file-selector-button:hover {
+    background: #9ba9bdfe;
+  }
+}
+
+.login-page__file-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  margin: 0;
+  margin-right: auto;
 }
