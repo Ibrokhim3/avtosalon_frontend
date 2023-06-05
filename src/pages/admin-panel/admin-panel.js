@@ -17,7 +17,15 @@ import { ModelTable } from "../../components/model-table";
 import { modelsAction } from "../../store";
 
 export const AdminPanel = () => {
+  const { list, loading, error } = useSelector((state) => state.models);
+
   const elModal = document.querySelector(".admin-panel__modal");
+
+  const dispatch = useDispatch();
+
+  const styles = {
+    opacity: loading ? 0.7 : 1,
+  };
 
   const dispath = useDispatch();
   const { formType, tableType } = useSelector((state) => state.models);

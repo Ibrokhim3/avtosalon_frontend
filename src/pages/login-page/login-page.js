@@ -41,12 +41,15 @@ export const LoginPage = () => {
       })
       .then((data) => {
         localStorage.setItem("token", data.token);
-        dispatch(modelsAction.setLoading(false));
+
         alert(data.msg);
         navigate("/");
       })
       .catch((err) => {
         alert(err);
+      })
+      .finally(() => {
+        dispatch(modelsAction.setLoading(false));
       });
   };
 
@@ -83,6 +86,7 @@ export const LoginPage = () => {
           </div>
           <div className="login-page__button-wrapper">
             <button
+              disabled={loading}
               style={styles}
               type="submit"
               className="login-page__form-button"

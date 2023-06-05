@@ -8,6 +8,7 @@ export const { actions: modelsAction, reducer: modelsReducer } = createSlice({
     error: null,
     formType: "",
     tableType: "category",
+    clickedId: null,
     searchValue: "",
     filterValue: null,
     dateValue: "",
@@ -30,6 +31,9 @@ export const { actions: modelsAction, reducer: modelsReducer } = createSlice({
     },
     setTableType: (state, { payload }) => {
       state.tableType = payload;
+    },
+    setClickedId: (state, { payload }) => {
+      state.clickedId = payload;
     },
     setSearchValue: (state, { payload }) => {
       state.searchValue = payload;

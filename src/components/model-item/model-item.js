@@ -9,6 +9,7 @@ export const ModelItem = ({
   modelPrice,
   modelImg,
   priceText,
+  item: { categoryName, categoryImg, publicId, _id, createdBy },
 }) => {
   return (
     <li className="model_item">
@@ -17,11 +18,11 @@ export const ModelItem = ({
           style={{ marginBottom: 16 }}
           width={289}
           height={220}
-          src={modelImg}
+          src={categoryImg}
           alt="car-byd"
         />
         <p style={style} className="model_item_car-brand">
-          {children}
+          {categoryName}
         </p>
         <p style={{ textAlign: "left" }} className="model-item__car-price">
           <span className="model-item__car-price-text">{priceText}</span>{" "}

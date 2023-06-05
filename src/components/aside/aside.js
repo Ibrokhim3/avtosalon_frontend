@@ -9,7 +9,9 @@ export const Aside = () => {
     <div className="aside">
       <ul className="aside__list">
         <li className="aside__item">
-          <Link className="aside__link">Asosiy</Link>
+          <Link to={"/"} className="aside__link">
+            Asosiy
+          </Link>
         </li>
         <li className="aside__item">
           <Link className="aside__link">E’lonlar</Link>
