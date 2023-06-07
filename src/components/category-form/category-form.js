@@ -108,7 +108,13 @@ export const CartegoryForm = ({ elModal }) => {
 
   return (
     <form
-      onSubmit={formType === "add" ? handleFormSubmit : handleFormSubmitUpdate}
+      onSubmit={
+        formType === "add"
+          ? handleFormSubmit
+          : formType === "edit"
+          ? handleFormSubmitUpdate
+          : handleFormSubmit
+      }
       className="category__modal-form"
     >
       <div className="category__modal-input-wrapper">
@@ -128,7 +134,7 @@ export const CartegoryForm = ({ elModal }) => {
       <Button
         onClick={() => {
           // elModal.style.display = "none";
-          dispatch(modelsAction.setFormType(""));
+          // dispatch(modelsAction.setFormType(""));
         }}
         style={{ marginTop: 40, styles }}
       >

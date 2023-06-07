@@ -5,9 +5,9 @@ import arrowRight from "../../assets/icons/arrow-right.svg";
 import editIcon from "../../assets/icons/edit.svg";
 import trashIcon from "../../assets/icons/trash.svg";
 import { modelsAction } from "../../store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export const ModelTable = ({
+export const UserTable = ({
   children,
   style,
   to,
@@ -21,55 +21,75 @@ export const ModelTable = ({
     (state) => state.models
   );
 
-  const onDeleteClick = async (evt) => {
-    const id = evt.target.dataset.id;
+  const [users, setUsers] = useState();
 
-    fetch("http://localhost:2004/avtosalon/delete-model", {
-      method: "DELETE",
-      headers: {
-        "Content-type": "Application/json",
-        token: localStorage.getItem("token" || ""),
-      },
-      body: JSON.stringify({ id: id }),
-    })
-      .then((res) => {
-        if (res.status !== 200) {
-          return res.text().then((text) => {
-            throw new Error(text);
-          });
-        }
-        return res.json();
-
-        // if (res.status === 200) {
-        //   return res.json();
-        // }
-        // return Promise.reject(res);
-      })
-      .then((data) => {
-        alert(data);
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  };
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:2004/avtosalon/get-models")
+    fetch("http://localhost:2004/avtosalon/get-users", {
+      headers: { token: token },
+    })
       .then((res) => {
-        if (res.status !== 200) {
-          return res.text().then((text) => {
-            throw new Error(text);
-          });
+        if (res.status === 200) {
+          return res.json();
         }
-        return res.json();
+        return Promise.reject(res);
       })
       .then((data) => {
-        dispatch(modelsAction.setListCars(data));
+        console.log(data);
+        setUsers(data);
       })
       .catch((err) => {
-        alert(err);
+        return console.log(err);
       });
-  }, [listCars]);
+  }, []);
+
+  const findUser = users?.find((item) => {
+    return item._id === item._id;
+  });
+
+  console.log(findUser);
+
+  // const onDeleteClick = async (evt) => {
+  //   dispatch(modelsAction.setClickedId(await evt.target.dataset.id));
+
+  //   fetch("http://localhost:2004/avtosalon/delete-model", {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Content-type": "Application/json",
+  //       token: localStorage.getItem("token" || ""),
+  //     },
+  //     body: JSON.stringify({ id: clickedId }),
+  //   })
+  //     .then((res) => {
+  //       if (res.status === 200) {
+  //         return res.json();
+  //       }
+  //       return Promise.reject(res);
+  //     })
+  //     .then((data) => {
+  //       alert(data);
+  //     })
+  //     .catch((err) => {
+  //       alert(err);
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   fetch("http://localhost:2004/avtosalon/get-models/")
+  //     .then((res) => {
+  //       if (res.status === 200) {
+  //         return res.json();
+  //       }
+  //       return Promise.reject(res);
+  //     })
+  //     .then((data) => {
+  //       dispatch(modelsAction.setListCars(data));
+  //     })
+  //     .catch((err) => {
+  //       alert(err);
+  //     });
+  // }, [listCars]);
 
   return (
     <table className="model-table">
@@ -97,7 +117,8 @@ export const ModelTable = ({
             <td>{item.color}</td>
             <td>{item.distance}&nbsp;km</td>
             <td className="model-table__td-button">
-              <button
+              <span className="purchased">Xarid Qilingan</span>
+              {/* <button
                 onClick={onDeleteClick}
                 data-id={item._id}
                 data-type="delete-model"
@@ -109,10 +130,10 @@ export const ModelTable = ({
                   src={trashIcon}
                   alt="delete/trash"
                 />
-              </button>
+              </button> */}
             </td>
             <td className="">
-              <button
+              {/* <button
                 data-id={item._id}
                 data-type="edit-model"
                 onClick={(e) => {
@@ -128,7 +149,7 @@ export const ModelTable = ({
                   src={editIcon}
                   alt="edit/pen"
                 />
-              </button>
+              </button> */}
             </td>
             <td>
               <Link>

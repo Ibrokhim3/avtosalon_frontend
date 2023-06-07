@@ -4,7 +4,7 @@ import {
   Container,
   Modal,
   UsersTable,
-  // UsersTable,
+  UserTable,
 } from "../../components";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,7 @@ import { Aside } from "../../components/aside";
 import { ModelTable } from "../../components/model-table";
 import { modelsAction } from "../../store";
 
-export const AdminPanel = () => {
+export const UserPage = () => {
   const { listCategory, loading, error } = useSelector((state) => state.models);
 
   const elModal = document.querySelector(".admin-panel__modal");
@@ -62,52 +62,12 @@ export const AdminPanel = () => {
             <div className="admin-panel__top-wrapper">
               <div className="admin-panel__left-wrapper">
                 <span className="admin-panel__indicator"></span>
-                <p className="admin-panel__text">
-                  {tableType === "category"
-                    ? "Kategoriyalar"
-                    : tableType === "cars"
-                    ? "Mashinalar"
-                    : tableType === "users"
-                    ? "Foydalanuvchilar"
-                    : tableType === "users-cars"
-                    ? "Foydalanuvchiga tegishli mashinalar"
-                    : ""}
-                </p>
+                <p className="admin-panel__text">Mashinalar ro'yxati</p>
               </div>
-              <div className="admin-panel__button-wrapper">
-                {formType !== "users-cars" ? (
-                  <Button
-                    onClick={(e) => {
-                      // elModal.style.display = "block";
-                      dispath(modelsAction.setFormType("add"));
-                    }}
-                    style={{ width: 192, padding: "12px 17.5px", margin: 0 }}
-                  >
-                    {tableType === "category"
-                      ? "Kategoriya"
-                      : tableType === "cars"
-                      ? "Mashina"
-                      : tableType === "users"
-                      ? "Foydalanuvchi"
-                      : ""}
-                    &nbsp;qo'shish
-                  </Button>
-                ) : (
-                  ""
-                )}
-              </div>
+              <div className="admin-panel__button-wrapper"></div>
             </div>
-            {tableType === "category" ? (
-              <CartegoryTable></CartegoryTable>
-            ) : tableType === "cars" ? (
-              <ModelTable></ModelTable>
-            ) : tableType === "users" ? (
-              <UsersTable></UsersTable>
-            ) : tableType === "users-cars" ? (
-              <ModelTable></ModelTable>
-            ) : (
-              ""
-            )}
+
+            <UserTable></UserTable>
 
             <div className="admin-panel__pagination">
               <Link>
@@ -139,9 +99,9 @@ export const AdminPanel = () => {
           </div>
         </Container>
       </div>
-      <Modal elModal={elModal}></Modal>
+      {/* <Modal elModal={elModal}></Modal> */}
 
-      <Aside></Aside>
+      {/* <Aside></Aside> */}
     </div>
   );
 };

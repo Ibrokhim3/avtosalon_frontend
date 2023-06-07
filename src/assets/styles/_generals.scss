@@ -49,7 +49,7 @@ ul {
 .textarea {
   padding: 12px;
   width: 548px;
-  height: 200px;
+  height: 150px;
 
   background: #f4f4f4;
   border-radius: 12px;
@@ -81,4 +81,10 @@ ul {
 
 .count {
   margin-left: 8px;
+}
+
+.profile-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }

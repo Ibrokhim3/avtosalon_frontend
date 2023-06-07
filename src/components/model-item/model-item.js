@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import cortIcon from "../../assets/icons/cart.svg";
 import likeIcon from "../../assets/icons/like.svg";
@@ -9,13 +9,14 @@ export const ModelItem = ({
   modelPrice,
   modelImg,
   priceText,
+
   item: { categoryName, categoryImg, publicId, _id, createdBy },
 }) => {
   return (
     <li className="model_item">
-      <Link>
+      <Link to={`models/${_id}`}>
         <img
-          style={{ marginBottom: 16 }}
+          style={{ marginBottom: 16, objectFit: "contain" }}
           width={289}
           height={220}
           src={categoryImg}
@@ -29,7 +30,7 @@ export const ModelItem = ({
           {modelPrice}
         </p>
       </Link>
-      <div className="model-item__button-wrapper">
+      <div style={{ display: "none" }} className="model-item__button-wrapper">
         <button className="action-button">
           <img style={{ width: 25 }} src={cortIcon} alt="buy" />
         </button>

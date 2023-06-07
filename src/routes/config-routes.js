@@ -1,7 +1,11 @@
 import { useRoutes } from "react-router-dom";
-import { AdminPanel, LoginPage, SignupPage } from "../pages";
+import { AdminPanel, LoginPage, ModelInfoPage, SignupPage } from "../pages";
 import { MainPage } from "../pages/main-page/main-page";
 import { ModelsPage } from "../pages/models-page";
+import { UserPage } from "../pages/user-page";
+
+const token = localStorage.getItem("token");
+const userRole = localStorage.getItem("userRole");
 
 const routes = [
   {
@@ -9,11 +13,20 @@ const routes = [
     element: <MainPage></MainPage>,
   },
   {
-    path: "model/:id",
+    path: "models/:id",
     children: [
       {
         path: "",
         element: <ModelsPage></ModelsPage>,
+      },
+    ],
+  },
+  {
+    path: "model-info/:id",
+    children: [
+      {
+        path: "",
+        element: <ModelInfoPage></ModelInfoPage>,
       },
     ],
   },
@@ -27,7 +40,12 @@ const routes = [
   },
   {
     path: "admin-panel",
-    element: <AdminPanel></AdminPanel>,
+    element:
+      token && userRole === "admin" ? (
+        <AdminPanel></AdminPanel>
+      ) : (
+        "Only admins!"
+      ),
   },
   {
     path: "admin-panel/:id",
@@ -37,6 +55,10 @@ const routes = [
         element: <AdminPanel></AdminPanel>,
       },
     ],
+  },
+  {
+    path: "user-page",
+    element: <UserPage></UserPage>,
   },
 ];
 

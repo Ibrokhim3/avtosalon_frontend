@@ -4,12 +4,14 @@ export const { actions: userAction, reducer: userReducer } = createSlice({
   name: "user",
   initialState: {
     token: localStorage.getItem("token"),
-    
+    userRole: localStorage.getItem("userRole"),
   },
   reducers: {
-    setLogin: (state, { payload }) => {
-      state.list = payload;
-      state.loading = false;
+    setToken: (state, { payload }) => {
+      state.token = payload;
+    },
+    setUserRole: (state, { payload }) => {
+      state.userRole = payload;
     },
   },
 });

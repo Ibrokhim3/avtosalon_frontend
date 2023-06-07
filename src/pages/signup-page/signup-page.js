@@ -98,18 +98,15 @@ export const SignupPage = () => {
                 placeholder="Profil uchun rasm yuklang"
               />
             </label>
-            {/* <div className="login-page__span-wrapper">
+            <div className="login-page__span-wrapper">
               <Link
                 style={{ margin: 0 }}
                 className="login-page__forgot-pass"
-                to={"sighup"}
+                to={"/login"}
               >
-                Ro'yxatdan o'tish
+                Login
               </Link>
-              <span className="login-page__forgot-pass">
-                Parolni unutdingizmi?
-              </span>
-            </div> */}
+            </div>
           </div>
           <div className="login-page__button-wrapper">
             <button

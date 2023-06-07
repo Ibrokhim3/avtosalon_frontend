@@ -11,3 +11,5 @@ export * from "./select";
 export * from "./users-form";
 export * from "./users-table";
 export * from "./icons";
+export * from "./model-item-car";
+export * from "./user-table";

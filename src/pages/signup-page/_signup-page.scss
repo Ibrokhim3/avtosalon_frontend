@@ -84,6 +84,7 @@
     color: $white;
     cursor: pointer;
     transition: background 0.2s ease-in-out;
+    margin-bottom: 20px;
   }
   &::file-selector-button:hover {
     background: #9ba9bdfe;

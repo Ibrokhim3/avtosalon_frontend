@@ -41,6 +41,7 @@ export const LoginPage = () => {
       })
       .then((data) => {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("userRole", data.userRole);
 
         alert(data.msg);
         navigate("/");

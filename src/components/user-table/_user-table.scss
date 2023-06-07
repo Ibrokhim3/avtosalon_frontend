@@ -1,0 +1,52 @@
+.model-table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.model-table tr {
+  border-bottom: 15px solid transparent;
+}
+
+.model-table thead {
+  border-bottom: 65px solid transparent;
+}
+
+.model-table th {
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.01em;
+  color: #6f767e;
+  margin-right: 24px;
+  text-align: left;
+  border-right: 40px solid transparent;
+}
+
+.model-table td {
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  color: #1a1d1f;
+  border-right: 40px solid transparent;
+
+  &:nth-child(2) {
+    font-weight: 700;
+  }
+}
+
+.control-button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.purchased {
+  background-color: green;
+  font-size: 12px;
+  color: white;
+  padding: 2px;
+  border-radius: 5px;
+}

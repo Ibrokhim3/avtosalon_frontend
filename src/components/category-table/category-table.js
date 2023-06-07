@@ -5,6 +5,7 @@ import arrowRight from "../../assets/icons/arrow-right.svg";
 import editIcon from "../../assets/icons/edit.svg";
 import trashIcon from "../../assets/icons/trash.svg";
 import { modelsAction } from "../../store";
+import { useEffect } from "react";
 
 export const CartegoryTable = ({
   children,
@@ -17,12 +18,28 @@ export const CartegoryTable = ({
 }) => {
   const dispatch = useDispatch();
 
-  const { formType, list, clickedId } = useSelector((state) => state.models);
+  const { formType, listCategory, clickedId } = useSelector(
+    (state) => state.models
+  );
 
-  console.log(clickedId);
+  useEffect(() => {
+    fetch("http://localhost:2004/avtosalon/get-categories")
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        return Promise.reject(res);
+      })
+      .then((data) => {
+        dispatch(modelsAction.setListCategory(data));
+      })
+      .catch((err) => {
+        return console.log(err);
+      });
+  }, [listCategory]);
 
   const onDeleteClick = async (evt) => {
-    dispatch(modelsAction.setClickedId(await evt.target.dataset.id));
+    const id = evt.target.dataset.id;
 
     fetch("http://localhost:2004/avtosalon/delete-category", {
       method: "DELETE",
@@ -30,7 +47,7 @@ export const CartegoryTable = ({
         "Content-type": "Application/json",
         token: localStorage.getItem("token" || ""),
       },
-      body: JSON.stringify({ id: clickedId }),
+      body: JSON.stringify({ id: id }),
     })
       .then((res) => {
         if (res.status === 200) {
@@ -57,7 +74,7 @@ export const CartegoryTable = ({
         </tr>
       </thead>
       <tbody>
-        {list?.map((item, index) => (
+        {listCategory?.map((item, index) => (
           <tr key={index}>
             <td>{index}</td>
             <td>{item.categoryName}</td>
@@ -99,7 +116,8 @@ export const CartegoryTable = ({
               </button>
             </td>
             <td>
-              <button
+              <Link
+                to={`/`}
                 className="switch-button"
                 data-id={item._id}
                 onClick={() => {
@@ -107,7 +125,7 @@ export const CartegoryTable = ({
                 }}
               >
                 <img src={arrowRight} alt="arrow-right" />
-              </button>
+              </Link>
               {/* <Link>
              <img src={arrowRight} alt="arrow-right" />
            </Link> */}

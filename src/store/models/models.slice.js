@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const { actions: modelsAction, reducer: modelsReducer } = createSlice({
   name: "models",
   initialState: {
-    list: null,
+    listCategory: null,
+    listCars: null,
     loading: false,
     error: null,
     formType: "",
@@ -15,8 +16,12 @@ export const { actions: modelsAction, reducer: modelsReducer } = createSlice({
     checkboxDirValue: "",
   },
   reducers: {
-    setList: (state, { payload }) => {
-      state.list = payload;
+    setListCategory: (state, { payload }) => {
+      state.listCategory = payload;
+      state.loading = false;
+    },
+    setListCars: (state, { payload }) => {
+      state.listCars = payload;
       state.loading = false;
     },
     setLoading: (state, { payload }) => {
