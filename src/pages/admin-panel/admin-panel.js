@@ -29,7 +29,9 @@ export const AdminPanel = () => {
   };
 
   const dispath = useDispatch();
-  const { formType, tableType } = useSelector((state) => state.models);
+  const { formType, tableType, clickedId } = useSelector(
+    (state) => state.models
+  );
 
   const navigate = useNavigate();
 
@@ -71,7 +73,7 @@ export const AdminPanel = () => {
                     ? "Foydalanuvchilar"
                     : tableType === "users-cars"
                     ? "Foydalanuvchiga tegishli mashinalar"
-                    : ""}
+                    : "Kategoriyalar"}
                 </p>
               </div>
               <div className="admin-panel__button-wrapper">

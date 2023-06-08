@@ -141,19 +141,22 @@ export const UsersForm = ({}) => {
         <Input type={"password"} id={"inputPass2"}>
           Parolni takrorlang
         </Input>
-
-        <label className="input-label" htmlFor="modelSelect2">
-          User role:
-          <Select
-            onChange={(e) => setUserRole(e.target.value)}
-            id={"modelSelect2"}
-          >
-            <option checked value="user">
-              user
-            </option>
-            <option value="admin">admin</option>
-          </Select>
-        </label>
+        {userRoleV === "admin" ? (
+          <label className="input-label" htmlFor="modelSelect2">
+            User role:
+            <Select
+              onChange={(e) => setUserRole(e.target.value)}
+              id={"modelSelect2"}
+            >
+              <option checked value="user">
+                user
+              </option>
+              <option value="admin">admin</option>
+            </Select>
+          </label>
+        ) : (
+          ""
+        )}
         <Input
           style={{ marginBottom: 10 }}
           onChange={onFileChange}

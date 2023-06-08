@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import arrowRight from "../../assets/icons/arrow-right.svg";
 import editIcon from "../../assets/icons/edit.svg";
 import trashIcon from "../../assets/icons/trash.svg";
-import { modelsAction } from "../../store";
+import { modelsAction, userAction } from "../../store";
 import { useEffect, useState } from "react";
 
 export const UserTable = ({
@@ -20,7 +20,6 @@ export const UserTable = ({
   const { formType, listCategory, listCars, clickedId, tableType } =
     useSelector((state) => state.models);
 
-  const [user, setUser] = useState();
   const [purchasedCars, setPurchasedCars] = useState();
   const [likedCars, setLikedCars] = useState();
 
@@ -39,8 +38,7 @@ export const UserTable = ({
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-        setUser(data.user);
+        dispatch(userAction.setUsers(data.user));
         setPurchasedCars(data.purchasedCars);
         setLikedCars(data.likedCars);
       })

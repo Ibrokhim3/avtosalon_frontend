@@ -5,7 +5,7 @@ import { modelsAction } from "../../store";
 export const Aside = () => {
   const dispath = useDispatch();
 
-  const { pageType } = useSelector((state) => state.models);
+  const { pageType, tableType } = useSelector((state) => state.models);
 
   return (
     <div className="aside">
@@ -24,6 +24,11 @@ export const Aside = () => {
         <li className="aside__item">
           {pageType === "admin-profile" ? (
             <button
+              style={
+                tableType === "category"
+                  ? { color: "blue" }
+                  : { color: "initial" }
+              }
               onClick={() => {
                 dispath(modelsAction.setTableType("category"));
               }}
@@ -33,6 +38,11 @@ export const Aside = () => {
             </button>
           ) : (
             <button
+              style={
+                tableType === "user-likes-table"
+                  ? { color: "blue" }
+                  : { color: "initial" }
+              }
               onClick={() => {
                 dispath(modelsAction.setTableType("user-likes-table"));
               }}
@@ -45,6 +55,9 @@ export const Aside = () => {
         <li className="aside__item">
           {pageType === "admin-profile" ? (
             <button
+              style={
+                tableType === "cars" ? { color: "blue" } : { color: "initial" }
+              }
               onClick={() => {
                 dispath(modelsAction.setTableType("cars"));
               }}
@@ -54,6 +67,11 @@ export const Aside = () => {
             </button>
           ) : (
             <button
+              style={
+                tableType === "user-buy-table"
+                  ? { color: "blue" }
+                  : { color: "initial" }
+              }
               onClick={() => {
                 dispath(modelsAction.setTableType("user-buy-table"));
               }}
@@ -66,6 +84,9 @@ export const Aside = () => {
         <li className="aside__item">
           {pageType === "admin-profile" ? (
             <button
+              style={
+                tableType === "users" ? { color: "blue" } : { color: "initial" }
+              }
               onClick={() => {
                 dispath(modelsAction.setTableType("users"));
               }}

@@ -1,4 +1,4 @@
-import { Button, Container, UserTable } from "../../components";
+import { Button, Container, Modal, UserTable } from "../../components";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import arrowLeft from "../../assets/icons/arrow-left.svg";
 import avatarImg from "../../assets/icons/Avatar.svg";
 import notifIcon from "../../assets/icons/Union.svg";
 import { Aside } from "../../components/aside";
+import { modelsAction } from "../../store";
 
 export const UserPage = () => {
   const { listCategory, loading, error } = useSelector((state) => state.models);
@@ -20,7 +21,11 @@ export const UserPage = () => {
   };
 
   const dispath = useDispatch();
-  const { formType, tableType } = useSelector((state) => state.models);
+  const { formType, tableType, clickedId } = useSelector(
+    (state) => state.models
+  );
+
+  const { users } = useSelector((state) => state.users);
 
   const navigate = useNavigate();
 
@@ -35,6 +40,19 @@ export const UserPage = () => {
             <div className="admin-panel__header-right">
               <img src={notifIcon} alt="notification" />
               <button
+                onClick={(e) => {
+                  dispatch(modelsAction.setFormType("edit"));
+                  dispatch(modelsAction.setTableType("users"));
+                  dispatch(modelsAction.setClickedId(""));
+                }}
+                className="profile-button profile-button-3"
+              >
+                Edit account
+              </button>
+              <button className="profile-button profile-button-2">
+                Delete account
+              </button>
+              <button
                 className="profile-button profile-button-1"
                 onClick={() => {
                   localStorage.setItem("token", "");
@@ -43,6 +61,18 @@ export const UserPage = () => {
               >
                 Log out
               </button>
+              <div className="user-page__profile-img-wrapper">
+                <img
+                  className="user-page__profile-img"
+                  width={48}
+                  height={48}
+                  src={users?.profileImg}
+                  alt="profile-image"
+                />
+                <span className="user-page__profile-name">
+                  {users?.userEmail}
+                </span>
+              </div>
             </div>
           </div>
         </Container>
@@ -96,7 +126,7 @@ export const UserPage = () => {
           </div>
         </Container>
       </div>
-      {/* <Modal elModal={elModal}></Modal> */}
+      <Modal elModal={elModal}></Modal>
 
       <Aside></Aside>
     </div>

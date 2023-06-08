@@ -34,7 +34,7 @@ export const Header = ({ style, children, icon }) => {
         <Button
           onClick={dispatch(modelsAction.setPageType("admin-profile"))}
           style={{ width: 260 }}
-          to={token && userRole === "admin" ? "/admin-panel" : "/login"}
+          to={"/admin-panel"}
         >
           <img src={adminIcon} alt="admin-icon" />
           {/* Login */}
