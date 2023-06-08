@@ -64,11 +64,8 @@ export const ModelItemCar = ({
   //     });
   // }, []);
 
-
-
   const onBuyClick = async (e) => {
     const id = e.target.dataset.id;
-    // dispatch(modelsAction.setClickedId(await evt.target.dataset.id));
 
     fetch("http://localhost:2004/avtosalon/buy-car", {
       method: "POST",
@@ -82,6 +79,9 @@ export const ModelItemCar = ({
           });
         }
         return res.json();
+      })
+      .then((data) => {
+        alert(data);
       })
       .catch((err) => {
         alert(err);

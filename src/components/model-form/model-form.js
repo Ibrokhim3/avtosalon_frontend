@@ -64,10 +64,12 @@ export const ModelForm = ({ elModal }) => {
       body: formData,
     })
       .then((res) => {
-        if (res.status === 201) {
-          return res.json();
+        if (res.status !== 201) {
+          return res.text().then((text) => {
+            throw new Error(text);
+          });
         }
-        return Promise.reject(res);
+        return res.json();
       })
       .then((data) => {
         alert(data);
@@ -119,10 +121,12 @@ export const ModelForm = ({ elModal }) => {
       body: formData,
     })
       .then((res) => {
-        if (res.status === 200) {
-          return res.json();
+        if (res.status !== 200) {
+          return res.text().then((text) => {
+            throw new Error(text);
+          });
         }
-        return Promise.reject(res);
+        return res.json();
       })
       .then((data) => {
         alert(data);
@@ -159,6 +163,9 @@ export const ModelForm = ({ elModal }) => {
             onChange={(e) => setCategory(e.target.value)}
             id={"dirSelect"}
           >
+            <option style={{ color: "red" }} checked value="">
+              Mashina brandini tanlang
+            </option>
             {listCategory?.map((item, index) => (
               <option value={item.categoryName} key={index}>
                 {item.categoryName}

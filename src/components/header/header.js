@@ -3,10 +3,14 @@ import { Button } from "../button";
 
 import adminIcon from "../../assets/icons/admin.svg";
 import arrowIcon from "../../assets/icons/Vector.svg";
-import avatarImg from "../../assets/icons/Avatar.svg";
+import avatarImg from "../../assets/icons/avatar3.png";
+import { useDispatch, useSelector } from "react-redux";
+import { modelsAction } from "../../store";
 
 export const Header = ({ style, children, icon }) => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const token = localStorage.getItem("token");
   const userRole = localStorage.getItem("userRole");
@@ -16,10 +20,11 @@ export const Header = ({ style, children, icon }) => {
         <button
           className="profile-button"
           onClick={() => {
+            dispatch(modelsAction.setPageType("user-profile"));
             token ? navigate("/user-page") : navigate("/login");
           }}
         >
-          <img src={avatarImg} alt="profile-image" />
+          <img width={40} src={avatarImg} alt="profile-image" />
         </button>
         <p style={{ fontSize: 20 }} className="main-page_page-name">
           Profile
@@ -27,6 +32,7 @@ export const Header = ({ style, children, icon }) => {
       </div>
       {userRole === "admin" ? (
         <Button
+          onClick={dispatch(modelsAction.setPageType("admin-profile"))}
           style={{ width: 260 }}
           to={token && userRole === "admin" ? "/admin-panel" : "/login"}
         >

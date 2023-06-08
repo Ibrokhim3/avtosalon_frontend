@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import arrowRight from "../../assets/icons/arrow-right.svg";
 import editIcon from "../../assets/icons/edit.svg";
 import trashIcon from "../../assets/icons/trash.svg";
-import { modelsAction } from "../../store";
+import { modelsAction, userAction } from "../../store";
 import { useEffect } from "react";
 
 export const UsersTable = ({
@@ -21,22 +21,30 @@ export const UsersTable = ({
     (state) => state.models
   );
 
-  const onDeleteClick = async (evt) => {
-    dispatch(modelsAction.setClickedId(await evt.target.dataset.id));
+  const { users } = useSelector((state) => state.users);
 
-    fetch("http://localhost:2004/avtosalon/delete-model", {
+  const token = localStorage.getItem("token");
+  const userRole = localStorage.getItem("userRole");
+
+  const onDeleteClick = async (evt) => {
+    const id = evt.target.dataset.id;
+
+    fetch("http://localhost:2004/avtosalon/delete-user-by-admin", {
       method: "DELETE",
       headers: {
         "Content-type": "Application/json",
-        token: localStorage.getItem("token" || ""),
+        token,
+        userRole,
       },
-      body: JSON.stringify({ id: clickedId }),
+      body: JSON.stringify({ id: id }),
     })
       .then((res) => {
-        if (res.status === 200) {
-          return res.json();
+        if (res.status !== 200) {
+          return res.text().then((text) => {
+            throw new Error(text);
+          });
         }
-        return Promise.reject(res);
+        return res.json();
       })
       .then((data) => {
         alert(data);
@@ -47,46 +55,40 @@ export const UsersTable = ({
   };
 
   useEffect(() => {
-    fetch("http://localhost:2004/avtosalon/get-models/")
+    fetch("http://localhost:2004/avtosalon/get-users", {
+      headers: { token, userRole },
+    })
       .then((res) => {
-        if (res.status === 200) {
-          return res.json();
+        if (res.status !== 200) {
+          return res.text().then((text) => {
+            throw new Error(text);
+          });
         }
-        return Promise.reject(res);
+        return res.json();
       })
       .then((data) => {
-        dispatch(modelsAction.setListCars(data));
+        dispatch(userAction.setUsers(data));
       })
       .catch((err) => {
         alert(err);
       });
-  }, [listCars]);
+  }, [users]);
 
   return (
     <table className="model-table">
       <thead>
         <tr>
           <th>#</th>
-          <th>Markasi</th>
-          <th>Gearbook</th>
-          <th>Tanirovkasi</th>
-          <th>Motor</th>
-          <th>Color</th>
-          <th>Year</th>
-          <th>Distance</th>
+          <th>User-email</th>
+          <th>User-role</th>
         </tr>
       </thead>
       <tbody>
-        {listCars?.map((item, index) => (
+        {users?.map((item, index) => (
           <tr key={index}>
             <td>{index}</td>
-            <td>{item.carName}</td>
-            <td>{item.gearbox}</td>
-            <td>{item.tonirovka}</td>
-            <td>{item.motor}</td>
-            <td>{item.year}</td>
-            <td>{item.color}</td>
-            <td>{item.distance}&nbsp;km</td>
+            <td>{item.userEmail}</td>
+            <td>{item.userRole}</td>
             <td className="model-table__td-button">
               <button
                 onClick={onDeleteClick}

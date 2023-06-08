@@ -44,13 +44,13 @@ export const AdminPanel = () => {
             <div className="admin-panel__header-right">
               <img src={notifIcon} alt="notification" />
               <button
-                className="profile-button"
+                className="profile-button profile-button-1"
                 onClick={() => {
                   localStorage.setItem("token", "");
                   navigate("/login");
                 }}
               >
-                <img src={avatarImg} alt="profile-image" />
+                Log out
               </button>
             </div>
           </div>
@@ -89,7 +89,7 @@ export const AdminPanel = () => {
                       ? "Mashina"
                       : tableType === "users"
                       ? "Foydalanuvchi"
-                      : ""}
+                      : "Kategoriya"}
                     &nbsp;qo'shish
                   </Button>
                 ) : (
@@ -106,7 +106,7 @@ export const AdminPanel = () => {
             ) : tableType === "users-cars" ? (
               <ModelTable></ModelTable>
             ) : (
-              ""
+              <CartegoryTable></CartegoryTable>
             )}
 
             <div className="admin-panel__pagination">

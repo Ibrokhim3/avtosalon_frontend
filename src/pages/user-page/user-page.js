@@ -1,11 +1,4 @@
-import {
-  Button,
-  CartegoryTable,
-  Container,
-  Modal,
-  UsersTable,
-  UserTable,
-} from "../../components";
+import { Button, Container, UserTable } from "../../components";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,8 +7,6 @@ import arrowLeft from "../../assets/icons/arrow-left.svg";
 import avatarImg from "../../assets/icons/Avatar.svg";
 import notifIcon from "../../assets/icons/Union.svg";
 import { Aside } from "../../components/aside";
-import { ModelTable } from "../../components/model-table";
-import { modelsAction } from "../../store";
 
 export const UserPage = () => {
   const { listCategory, loading, error } = useSelector((state) => state.models);
@@ -44,13 +35,13 @@ export const UserPage = () => {
             <div className="admin-panel__header-right">
               <img src={notifIcon} alt="notification" />
               <button
-                className="profile-button"
+                className="profile-button profile-button-1"
                 onClick={() => {
                   localStorage.setItem("token", "");
                   navigate("/login");
                 }}
               >
-                <img src={avatarImg} alt="profile-image" />
+                Log out
               </button>
             </div>
           </div>
@@ -62,7 +53,13 @@ export const UserPage = () => {
             <div className="admin-panel__top-wrapper">
               <div className="admin-panel__left-wrapper">
                 <span className="admin-panel__indicator"></span>
-                <p className="admin-panel__text">Mashinalar ro'yxati</p>
+                <p className="admin-panel__text">
+                  {tableType === "user-likes-table"
+                    ? "Tanlangan mashinalar ro'yxati (Liked)"
+                    : tableType === "user-buy-table"
+                    ? "Sotib olingan mashinalar ro'yxati"
+                    : "Tanlangan mashinalar ro'yxati (Liked)"}
+                </p>
               </div>
               <div className="admin-panel__button-wrapper"></div>
             </div>
@@ -101,7 +98,7 @@ export const UserPage = () => {
       </div>
       {/* <Modal elModal={elModal}></Modal> */}
 
-      {/* <Aside></Aside> */}
+      <Aside></Aside>
     </div>
   );
 };

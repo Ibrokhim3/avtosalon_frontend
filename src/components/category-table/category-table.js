@@ -25,10 +25,12 @@ export const CartegoryTable = ({
   useEffect(() => {
     fetch("http://localhost:2004/avtosalon/get-categories")
       .then((res) => {
-        if (res.status === 200) {
-          return res.json();
+        if (res.status !== 200) {
+          return res.text().then((text) => {
+            throw new Error(text);
+          });
         }
-        return Promise.reject(res);
+        return res.json();
       })
       .then((data) => {
         dispatch(modelsAction.setListCategory(data));
@@ -50,10 +52,12 @@ export const CartegoryTable = ({
       body: JSON.stringify({ id: id }),
     })
       .then((res) => {
-        if (res.status === 200) {
-          return res.json();
+        if (res.status !== 200) {
+          return res.text().then((text) => {
+            throw new Error(text);
+          });
         }
-        return Promise.reject(res);
+        return res.json();
       })
       .then((data) => {
         alert(data);

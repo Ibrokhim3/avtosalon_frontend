@@ -8,12 +8,9 @@ export const { actions: modelsAction, reducer: modelsReducer } = createSlice({
     loading: false,
     error: null,
     formType: "",
-    tableType: "category",
+    pageType: "",
+    tableType: "",
     clickedId: null,
-    searchValue: "",
-    filterValue: null,
-    dateValue: "",
-    checkboxDirValue: "",
   },
   reducers: {
     setListCategory: (state, { payload }) => {
@@ -40,17 +37,9 @@ export const { actions: modelsAction, reducer: modelsReducer } = createSlice({
     setClickedId: (state, { payload }) => {
       state.clickedId = payload;
     },
-    setSearchValue: (state, { payload }) => {
-      state.searchValue = payload;
-    },
-    setDateValue: (state, { payload }) => {
-      state.dateValue = payload;
-    },
-    setDirCheckboxValue: (state, { payload }) => {
-      state.checkboxDirValue = payload;
-    },
-    setFilterValue: (state, { payload }) => {
-      state.filterValue = payload;
+
+    setPageType: (state, { payload }) => {
+      state.pageType = payload;
     },
   },
 });
