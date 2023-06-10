@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { useRoutes } from "react-router-dom";
 import { AdminPanel, LoginPage, ModelInfoPage, SignupPage } from "../pages";
 import { MainPage } from "../pages/main-page/main-page";
@@ -6,6 +7,8 @@ import { UserPage } from "../pages/user-page";
 
 const token = localStorage.getItem("token");
 const userRole = localStorage.getItem("userRole");
+
+console.log(token, userRole);
 
 const routes = [
   {
@@ -40,12 +43,7 @@ const routes = [
   },
   {
     path: "admin-panel",
-    element:
-      token && userRole === "admin" ? (
-        <AdminPanel></AdminPanel>
-      ) : (
-        "Only admins!"
-      ),
+    element: <AdminPanel></AdminPanel>,
   },
   {
     path: "admin-panel/:id",

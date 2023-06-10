@@ -49,7 +49,7 @@ export const Modal = ({ elModal }) => {
         ) : tableType === "users" ? (
           <UsersForm></UsersForm>
         ) : (
-          ""
+          <CartegoryForm elModal={elModal}></CartegoryForm>
         )}
       </div>
     </div>

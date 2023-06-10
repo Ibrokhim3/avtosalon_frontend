@@ -12,6 +12,8 @@ import { modelsAction } from "../../store";
 export const UserPage = () => {
   const { listCategory, loading, error } = useSelector((state) => state.models);
 
+  const token = localStorage.getItem("token");
+
   const elModal = document.querySelector(".admin-panel__modal");
 
   const dispatch = useDispatch();
@@ -28,6 +30,35 @@ export const UserPage = () => {
   const { users } = useSelector((state) => state.users);
 
   const navigate = useNavigate();
+
+  const onDeleteClick = async (evt) => {
+    // const id = evt.target.dataset.id;
+
+    fetch("http://localhost:2004/avtosalon/delete-user-by-admin", {
+      method: "DELETE",
+      headers: {
+        "Content-type": "Application/json",
+        token,
+        // userRole,
+      },
+      // body: JSON.stringify({ id: id }),
+    })
+      .then((res) => {
+        if (res.status !== 200) {
+          return res.text().then((text) => {
+            throw new Error(text);
+          });
+        }
+        return res.json();
+      })
+      .then((data) => {
+        alert(data);
+        navigate("/login");
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
 
   return (
     <div className="admin-panel">
@@ -49,7 +80,11 @@ export const UserPage = () => {
               >
                 Edit account
               </button>
-              <button className="profile-button profile-button-2">
+              <button
+                type="click"
+                onClick={onDeleteClick}
+                className="profile-button profile-button-2"
+              >
                 Delete account
               </button>
               <button
