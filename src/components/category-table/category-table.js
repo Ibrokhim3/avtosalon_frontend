@@ -6,6 +6,7 @@ import editIcon from "../../assets/icons/edit.svg";
 import trashIcon from "../../assets/icons/trash.svg";
 import { modelsAction } from "../../store";
 import { useEffect } from "react";
+import { API_URL } from "../../variables";
 
 export const CartegoryTable = ({
   children,
@@ -23,7 +24,7 @@ export const CartegoryTable = ({
   );
 
   useEffect(() => {
-    fetch("http://localhost:2004/avtosalon/get-categories")
+    fetch(`${API_URL}/avtosalon/get-categories`)
       .then((res) => {
         if (res.status !== 200) {
           return res.text().then((text) => {
@@ -43,7 +44,7 @@ export const CartegoryTable = ({
   const onDeleteClick = async (evt) => {
     const id = evt.target.dataset.id;
 
-    fetch("http://localhost:2004/avtosalon/delete-category", {
+    fetch(`${API_URL}/avtosalon/delete-category`, {
       method: "DELETE",
       headers: {
         "Content-type": "Application/json",

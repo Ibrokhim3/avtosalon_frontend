@@ -6,6 +6,7 @@ import { Header } from "../../components/header";
 import { useDispatch, useSelector } from "react-redux";
 import { modelsAction, userAction } from "../../store";
 import { useEffect } from "react";
+import { API_URL } from "../../variables";
 
 export const MainPage = () => {
   const { listCategory, loading, error } = useSelector((state) => state.models);
@@ -19,7 +20,7 @@ export const MainPage = () => {
   // );
 
   useEffect(() => {
-    fetch("http://localhost:2004/avtosalon/get-categories")
+    fetch(`${API_URL}/avtosalon/get-categories`)
       .then((res) => {
         if (res.status === 200) {
           return res.json();

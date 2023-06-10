@@ -6,6 +6,7 @@ import editIcon from "../../assets/icons/edit.svg";
 import trashIcon from "../../assets/icons/trash.svg";
 import { modelsAction } from "../../store";
 import { useEffect } from "react";
+import { API_URL } from "../../variables";
 
 export const ModelTable = ({
   children,
@@ -24,7 +25,7 @@ export const ModelTable = ({
   const onDeleteClick = async (evt) => {
     const id = evt.target.dataset.id;
 
-    fetch("http://localhost:2004/avtosalon/delete-model", {
+    fetch(`${API_URL}/avtosalon/delete-model`, {
       method: "DELETE",
       headers: {
         "Content-type": "Application/json",
@@ -54,7 +55,7 @@ export const ModelTable = ({
   };
 
   useEffect(() => {
-    fetch("http://localhost:2004/avtosalon/get-models")
+    fetch(`${API_URL}/avtosalon/get-models`)
       .then((res) => {
         if (res.status !== 200) {
           return res.text().then((text) => {

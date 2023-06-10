@@ -7,6 +7,7 @@ import { Header } from "../../components/header";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modelsAction } from "../../store";
+import { API_URL } from "../../variables";
 
 export const ModelsPage = () => {
   const { id } = useParams();
@@ -18,7 +19,7 @@ export const ModelsPage = () => {
   );
 
   useEffect(() => {
-    fetch("http://localhost:2004/avtosalon/get-models/" + id)
+    fetch(`${API_URL}/avtosalon/get-models/` + id)
       .then((res) => {
         if (res.status !== 200) {
           return res.text().then((text) => {

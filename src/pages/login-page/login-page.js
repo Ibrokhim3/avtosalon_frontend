@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Container } from "../../components";
 import { modelsAction, userAction } from "../../store";
+import { API_URL } from "../../variables";
 
 export const LoginPage = () => {
   const { loading } = useSelector((state) => state.models);
@@ -28,7 +29,7 @@ export const LoginPage = () => {
       password,
     };
 
-    fetch("http://localhost:2004/avtosalon/login", {
+    fetch(`${API_URL}/avtosalon/login`, {
       method: "POST",
       headers: { "Content-type": "Application/json" },
       body: JSON.stringify(user),

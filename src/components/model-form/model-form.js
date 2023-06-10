@@ -2,6 +2,7 @@ import { useEffect, useInsertionEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { modelsAction } from "../../store";
+import { API_URL } from "../../variables";
 import { Button } from "../button";
 import { Input } from "../input-text";
 import { Select } from "../select";
@@ -83,7 +84,7 @@ export const ModelForm = ({ elModal }) => {
     formData.append("carImg2", file2);
     formData.append("carImg3", file3);
 
-    fetch("http://localhost:2004/avtosalon/add-model", {
+    fetch(`${API_URL}/avtosalon/add-model`, {
       method: "POST",
       headers: {
         token: token,
@@ -145,7 +146,7 @@ export const ModelForm = ({ elModal }) => {
     formData.append("carImg3", file3);
     formData.append("id", clickedId);
 
-    fetch("http://localhost:2004/avtosalon/update-model", {
+    fetch(`${API_URL}/avtosalon/update-model`, {
       method: "PUT",
       headers: {
         token: token,

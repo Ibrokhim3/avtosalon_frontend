@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { modelsAction } from "../../store";
+import { API_URL } from "../../variables";
 import { Button } from "../button";
 import { Input } from "../input-text";
 import { Select } from "../select";
@@ -51,7 +52,7 @@ export const UsersForm = ({}) => {
     formData.append("profileImg", file);
     formData.append("userRole", userRole);
 
-    fetch("http://localhost:2004/avtosalon/signup", {
+    fetch(`${API_URL}/avtosalon/signup`, {
       method: "POST",
       headers: { token, userRole: userRoleV },
       body: formData,
@@ -95,7 +96,7 @@ export const UsersForm = ({}) => {
     formData.append("id", clickedId);
     formData.append("profileImg", file);
 
-    fetch("http://localhost:2004/avtosalon/update-user-by-admin", {
+    fetch(`${API_URL}/avtosalon/update-user-by-admin`, {
       method: "PUT",
       headers: {
         token,

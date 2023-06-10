@@ -6,6 +6,7 @@ import editIcon from "../../assets/icons/edit.svg";
 import trashIcon from "../../assets/icons/trash.svg";
 import { modelsAction, userAction } from "../../store";
 import { useEffect } from "react";
+import { API_URL } from "../../variables";
 
 export const UsersTable = ({
   children,
@@ -29,7 +30,7 @@ export const UsersTable = ({
   const onDeleteClick = async (evt) => {
     const id = evt.target.dataset.id;
 
-    fetch("http://localhost:2004/avtosalon/delete-user-by-admin", {
+    fetch(`${API_URL}/avtosalon/delete-user-by-admin`, {
       method: "DELETE",
       headers: {
         "Content-type": "Application/json",
@@ -55,7 +56,7 @@ export const UsersTable = ({
   };
 
   useEffect(() => {
-    fetch("http://localhost:2004/avtosalon/get-users", {
+    fetch(`${API_URL}/avtosalon/get-users`, {
       headers: { token, userRole },
     })
       .then((res) => {

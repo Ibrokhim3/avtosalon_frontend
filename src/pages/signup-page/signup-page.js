@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useFormAction, useNavigate } from "react-router-dom";
 import { Container } from "../../components";
 import { modelsAction } from "../../store";
+import { API_URL } from "../../variables";
 
 export const SignupPage = () => {
   const [file, setFile] = useState(null);
@@ -39,7 +40,7 @@ export const SignupPage = () => {
     formData.append("password2", password2);
     formData.append("profileImg", file);
 
-    fetch("http://localhost:2004/avtosalon/signup", {
+    fetch(`${API_URL}/avtosalon/signup`, {
       method: "POST",
       // headers: { "Content-type": "Application/json" },
       body: formData,

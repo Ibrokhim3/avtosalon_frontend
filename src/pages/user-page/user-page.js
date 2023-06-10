@@ -8,6 +8,7 @@ import avatarImg from "../../assets/icons/Avatar.svg";
 import notifIcon from "../../assets/icons/Union.svg";
 import { Aside } from "../../components/aside";
 import { modelsAction } from "../../store";
+import { API_URL } from "../../variables";
 
 export const UserPage = () => {
   const { listCategory, loading, error } = useSelector((state) => state.models);
@@ -34,7 +35,7 @@ export const UserPage = () => {
   const onDeleteClick = async (evt) => {
     // const id = evt.target.dataset.id;
 
-    fetch("http://localhost:2004/avtosalon/delete-user-by-admin", {
+    fetch(`${API_URL}/avtosalon/delete-user-by-admin`, {
       method: "DELETE",
       headers: {
         "Content-type": "Application/json",

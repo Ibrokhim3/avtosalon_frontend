@@ -6,6 +6,7 @@ import editIcon from "../../assets/icons/edit.svg";
 import trashIcon from "../../assets/icons/trash.svg";
 import { modelsAction, userAction } from "../../store";
 import { useEffect, useState } from "react";
+import { API_URL } from "../../variables";
 
 export const UserTable = ({
   children,
@@ -26,7 +27,7 @@ export const UserTable = ({
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:2004/avtosalon/get-one-user", {
+    fetch(`${API_URL}/avtosalon/get-one-user`, {
       headers: { token: token },
     })
       .then((res) => {

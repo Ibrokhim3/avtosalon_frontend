@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import cortIcon from "../../assets/icons/cart.svg";
 import likeIcon from "../../assets/icons/like.svg";
 import { modelsAction } from "../../store";
+import { API_URL } from "../../variables";
 
 export const ModelItemCar = ({
   style,
@@ -70,7 +71,7 @@ export const ModelItemCar = ({
   const onBuyClick = async (e) => {
     const id = e.target.dataset.id;
 
-    fetch("http://localhost:2004/avtosalon/buy-car", {
+    fetch(`${API_URL}/avtosalon/buy-car`, {
       method: "POST",
       headers: { "Content-type": "Application/json", token: token },
       body: JSON.stringify({ id: id }),
@@ -95,7 +96,7 @@ export const ModelItemCar = ({
   const onLikeClick = async (e) => {
     const id = e.target.dataset.id;
 
-    fetch("http://localhost:2004/avtosalon/like-car", {
+    fetch(`${API_URL}/avtosalon/like-car`, {
       method: "POST",
       headers: { "Content-type": "Application/json", token: token },
       body: JSON.stringify({ id: id }),
