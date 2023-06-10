@@ -1,9 +1,17 @@
-import { Button, Container, ModelItem } from "../../components";
+import { Button, Container, ModelItem, Slider } from "../../components";
 
 import bydSongImg from "../../assets/img/05.png";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Header } from "../../components/header";
 import { useDispatch, useSelector } from "react-redux";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y, EffectCube } from "swiper";
+import "swiper/swiper-bundle.min.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 export const ModelInfoPage = () => {
   const { id } = useParams();
@@ -19,6 +27,9 @@ export const ModelInfoPage = () => {
   const {
     carName,
     carImg,
+    carImg1,
+    carImg2,
+    carImg3,
     carPrice,
     color,
     desc,
@@ -87,13 +98,59 @@ export const ModelInfoPage = () => {
           </div>
           <div className="model-info-page__model-wrapper">
             <h3 className="model-info-page__model-name">{carName}</h3>
-            <img
+            <Swiper
+              modules={[Navigation, Pagination, Scrollbar, A11y, EffectCube]}
+              spaceBetween={50}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              // scrollbar={{ draggable: true }}
+              onSlideChange={() => console.log("slide change")}
+              onSwiper={(swiper) => console.log(swiper)}
+              // effect={"cube"}
+              // cubeEffect={{
+              //   shadow: true,
+              //   slideShadows: true,
+              //   shadowOffset: 20,
+              //   shadowScale: 0.94,
+              // }}
+            >
+              <SwiperSlide>
+                <img
+                  maxWidth={824}
+                  height={444}
+                  className="model-info-page__model-img"
+                  src={carImg1}
+                  alt="car-img"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  width={824}
+                  height={444}
+                  className="model-info-page__model-img"
+                  src={carImg2}
+                  alt="car-img2"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  width={824}
+                  height={444}
+                  className="model-info-page__model-img"
+                  src={carImg3}
+                  alt="car-img3"
+                />
+              </SwiperSlide>
+            </Swiper>
+            {/* <img
               width={900}
               style={{ marginBottom: 16 }}
               className="model-info-page__model-img"
               src={carImg}
               alt="car-img"
-            />
+            /> */}
+            {/* <Slider slides={listCars} /> */}
           </div>
         </div>
       </Container>

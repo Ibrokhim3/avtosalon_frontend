@@ -13,3 +13,4 @@ export * from "./users-table";
 export * from "./icons";
 export * from "./model-item-car";
 export * from "./user-table";
+export * from "./swiper";

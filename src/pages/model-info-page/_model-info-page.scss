@@ -8,7 +8,8 @@
 }
 
 .model-info-page__model-img {
-  max-width: 824px;
+  // max-width: 824px;
+  object-fit: contain;
   // max-height: 444px;
 }
 
@@ -24,6 +25,7 @@
 .model-info-page__model-name {
   margin: 0 0 8px 0;
   font-weight: 500;
+  margin-bottom: 10px;
 
   text-transform: uppercase;
 
@@ -50,4 +52,8 @@
 .model-info-page__span {
   font-size: 16px;
   color: rgba(0, 0, 0, 0.6);
+}
+
+.model-info-page__model-wrapper {
+  max-width: 824px;
 }
