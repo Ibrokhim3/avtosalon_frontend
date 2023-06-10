@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Container } from "../../components";
-import { modelsAction } from "../../store";
+import { modelsAction, userAction } from "../../store";
 
 export const LoginPage = () => {
   const { loading } = useSelector((state) => state.models);
@@ -42,8 +42,10 @@ export const LoginPage = () => {
         return res.json();
       })
       .then((data) => {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userRole", data.userRole);
+        // localStorage.setItem("token", data.token);
+        // localStorage.setItem("userRole", data.userRole);
+        dispatch(userAction.setToken(data.token));
+        dispatch(userAction.setUserRole(data.userRole));
 
         alert(data.msg);
         navigate("/");

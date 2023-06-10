@@ -1,5 +1,6 @@
 import { useEffect, useInsertionEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { modelsAction } from "../../store";
 import { Button } from "../button";
 import { Input } from "../input-text";
@@ -11,9 +12,14 @@ export const ModelForm = ({ elModal }) => {
     (state) => state.models
   );
 
+  const navigate = useNavigate();
+
   const token = localStorage.getItem("token");
 
   const [file, setFile] = useState(null);
+  const [file1, setFile1] = useState(null);
+  const [file2, setFile2] = useState(null);
+  const [file3, setFile3] = useState(null);
   const [category, setCategory] = useState("");
   const [tonirovka, setTonirovka] = useState("Yo'q");
 
@@ -23,13 +29,31 @@ export const ModelForm = ({ elModal }) => {
     }
   };
 
+  const onFileChange1 = async (e) => {
+    if (e.target.files) {
+      setFile1(e.target.files[0]);
+    }
+  };
+
+  const onFileChange2 = async (e) => {
+    if (e.target.files) {
+      setFile2(e.target.files[0]);
+    }
+  };
+
+  const onFileChange3 = async (e) => {
+    if (e.target.files) {
+      setFile3(e.target.files[0]);
+    }
+  };
+
+  const styles = {
+    opacity: loading ? 0.7 : 1,
+  };
+
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
-    // dispatch(postsAction.setLoading(true));
-
-    const styles = {
-      opacity: loading ? 0.7 : 1,
-    };
+    dispatch(modelsAction.setLoading(true));
 
     const {
       inputModel: { value: carName },
@@ -55,6 +79,9 @@ export const ModelForm = ({ elModal }) => {
     formData.append("distance", distance);
     formData.append("carPrice", carPrice);
     formData.append("carImg", file);
+    formData.append("carImg1", file1);
+    formData.append("carImg2", file2);
+    formData.append("carImg3", file3);
 
     fetch("http://localhost:2004/avtosalon/add-model", {
       method: "POST",
@@ -81,11 +108,13 @@ export const ModelForm = ({ elModal }) => {
       })
       .finally(() => {
         dispatch(modelsAction.setLoading(false));
+        navigate("/");
       });
   };
 
   const handleFormSubmitUpdate = (evt) => {
     evt.preventDefault();
+    dispatch(modelsAction.setLoading(true));
 
     const {
       inputModel: { value: carName },
@@ -111,6 +140,9 @@ export const ModelForm = ({ elModal }) => {
     formData.append("distance", distance);
     formData.append("carPrice", carPrice);
     formData.append("carImg", file);
+    formData.append("carImg1", file1);
+    formData.append("carImg2", file2);
+    formData.append("carImg3", file3);
     formData.append("id", clickedId);
 
     fetch("http://localhost:2004/avtosalon/update-model", {
@@ -138,6 +170,7 @@ export const ModelForm = ({ elModal }) => {
       })
       .finally(() => {
         dispatch(modelsAction.setLoading(false));
+        navigate("/");
       });
   };
 
@@ -227,11 +260,39 @@ export const ModelForm = ({ elModal }) => {
           placeholder={"Yuklash"}
           id={"categoryFileInput"}
         >
-          Rasm
+          Asosiy Rasm
+        </Input>
+        <Input
+          style={{ marginBottom: 10 }}
+          onChange={onFileChange1}
+          type={"file"}
+          placeholder={"Yuklash"}
+          id={"categoryFileInput1"}
+        >
+          Swipe uchun rasm-1
+        </Input>
+        <Input
+          style={{ marginBottom: 10 }}
+          onChange={onFileChange2}
+          type={"file"}
+          placeholder={"Yuklash"}
+          id={"categoryFileInput2"}
+        >
+          Swipe uchun rasm-2
+        </Input>
+        <Input
+          style={{ marginBottom: 10 }}
+          onChange={onFileChange3}
+          type={"file"}
+          placeholder={"Yuklash"}
+          id={"categoryFileInput3"}
+        >
+          Swipe uchun rasm-3
         </Input>
       </div>
 
       <Button
+        style={styles}
         onClick={() => {
           elModal.style.display = "none";
         }}

@@ -1,15 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { modelsAction } from "../../store";
 import { Button } from "../button";
 import { Input } from "../input-text";
 
 export const CartegoryForm = ({ elModal }) => {
   const { formType, loading, clickedId } = useSelector((state) => state.models);
-
-  const styles = {
-    opacity: loading ? 0.7 : 1,
-  };
 
   // const { token } = useSelector((state) => state.user);
 
@@ -18,19 +15,21 @@ export const CartegoryForm = ({ elModal }) => {
   const [file, setFile] = useState(null);
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const onFileChange = async (e) => {
     if (e.target.files) {
       setFile(e.target.files[0]);
     }
   };
 
+  const styles = {
+    opacity: loading ? 0.7 : 1,
+  };
+
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
-    // dispatch(postsAction.setLoading(true));
-
-    const styles = {
-      opacity: loading ? 0.7 : 1,
-    };
+    dispatch(modelsAction.setLoading(true));
 
     const {
       categoryTextInput: { value: categoryName },
@@ -66,11 +65,13 @@ export const CartegoryForm = ({ elModal }) => {
       })
       .finally(() => {
         dispatch(modelsAction.setLoading(false));
+        navigate("/");
       });
   };
 
   const handleFormSubmitUpdate = (evt) => {
     evt.preventDefault();
+    dispatch(modelsAction.setLoading(true));
 
     const {
       categoryTextInput: { value: categoryName },
@@ -107,6 +108,7 @@ export const CartegoryForm = ({ elModal }) => {
       })
       .finally(() => {
         dispatch(modelsAction.setLoading(false));
+        navigate("/");
       });
   };
 
@@ -137,7 +139,7 @@ export const CartegoryForm = ({ elModal }) => {
 
       <Button
         onClick={() => {
-          // elModal.style.display = "none";
+          elModal.style.display = "none";
           // dispatch(modelsAction.setFormType(""));
         }}
         style={{ marginTop: 40, styles }}

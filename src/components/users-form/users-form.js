@@ -65,11 +65,14 @@ export const UsersForm = ({}) => {
         return res.json();
       })
       .then((data) => {
-        dispatch(modelsAction.setLoading(false));
         alert(data);
       })
       .catch((err) => {
         alert(err);
+      })
+      .finally(() => {
+        dispatch(modelsAction.setLoading(false));
+        navigate("/");
       });
   };
 
@@ -117,6 +120,7 @@ export const UsersForm = ({}) => {
       })
       .finally(() => {
         dispatch(modelsAction.setLoading(false));
+        navigate("/");
       });
   };
 

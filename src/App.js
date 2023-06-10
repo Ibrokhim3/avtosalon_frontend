@@ -6,10 +6,6 @@ function App() {
   return (
     <div className="App">
       <ConfigRoutes></ConfigRoutes>
-      {/* <ModelsPage></ModelsPage> */}
-      {/* <ModelInfoPage></ModelInfoPage> */}
-      {/* <AdminPanel></AdminPanel> */}
-      {/* <LoginPage></LoginPage> */}
     </div>
   );
 }

@@ -12,10 +12,10 @@ export const { actions: userAction, reducer: userReducer } = createSlice({
       state.users = payload;
     },
     setToken: (state, { payload }) => {
-      state.token = payload;
+      state.token = localStorage.setItem("token", payload);
     },
     setUserRole: (state, { payload }) => {
-      state.userRole = payload;
+      state.userRole = localStorage.setItem("userRole", payload);
     },
   },
 });
