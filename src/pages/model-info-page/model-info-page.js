@@ -12,7 +12,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { API_URL } from "../../variables";
+import { modelsAction } from "../../store";
 
 export const ModelInfoPage = () => {
   const { id } = useParams();
@@ -23,7 +25,28 @@ export const ModelInfoPage = () => {
     (state) => state.models
   );
 
-  const selectModel = listCars?.find((item, index) => item._id === id);
+  let selectModel = listCars?.find((item, index) => item._id === id);
+
+  !localStorage.getItem("model") &&
+    localStorage.setItem("model", JSON.stringify(selectModel));
+
+  selectModel = JSON.parse(localStorage.getItem("model"));
+  // useEffect(() => {
+  //   fetch(`${API_URL}/avtosalon/get-model/` + id)
+  //     .then((res) => {
+  //       if (res.status === 200) {
+  //         return res.json();
+  //       }
+  //       return Promise.reject(res);
+  //     })
+  //     .then((data) => {
+  //       console.log(data);
+  //       setModel(data);
+  //     })
+  //     .catch((err) => {
+  //       return console.log(err);
+  //     });
+  // }, []);
 
   const {
     carName,
@@ -63,7 +86,7 @@ export const ModelInfoPage = () => {
               <li className="model-info-page__item">
                 Marka:&nbsp;
                 <span className="model-info-page__span">
-                  {carName.split(" ")[0]}
+                  {/* {carName.split(" ")[0]} */}
                 </span>
               </li>
               <li className="model-info-page__item">

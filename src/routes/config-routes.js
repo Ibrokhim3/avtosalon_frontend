@@ -8,8 +8,6 @@ import { UserPage } from "../pages/user-page";
 const token = localStorage.getItem("token");
 const userRole = localStorage.getItem("userRole");
 
-console.log(token, userRole);
-
 const routes = [
   {
     path: "/",

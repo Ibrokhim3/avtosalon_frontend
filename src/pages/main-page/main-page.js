@@ -39,7 +39,8 @@ export const MainPage = () => {
     <div className="main-page">
       <Container>
         <Header></Header>
-        <p className="main-page__page-title">Modellari</p>
+        <p className="main-page__page-title">Modellar</p>
+        {listCategory ?
         <ul className="main-page__list">
           {listCategory?.map((item, index) => (
             <ModelItem
@@ -52,6 +53,8 @@ export const MainPage = () => {
             </ModelItem>
           ))}
         </ul>
+      : <div className="loader"></div>
+        }
       </Container>
     </div>
   );

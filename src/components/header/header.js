@@ -47,7 +47,7 @@ export const Header = ({ style, children, icon }) => {
       <div className="main-page__title-wrapper">
         <Link to={"/"} className="main-page_page-name">
           Bosh sahifa <img src={arrowIcon} alt="arrow" />
-          <Link className="main-page_page-name">modellari</Link>
+          <Link className="main-page_page-name">modellar</Link>
           <Link className="main-page_page-name">{children}</Link>
         </Link>
       </div>

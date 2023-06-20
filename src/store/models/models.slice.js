@@ -37,7 +37,6 @@ export const { actions: modelsAction, reducer: modelsReducer } = createSlice({
     setClickedId: (state, { payload }) => {
       state.clickedId = payload;
     },
-
     setPageType: (state, { payload }) => {
       state.pageType = payload;
     },

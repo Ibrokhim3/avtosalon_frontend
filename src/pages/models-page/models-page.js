@@ -41,19 +41,23 @@ export const ModelsPage = () => {
       <Container>
         <Header>BYD turlari</Header>
         <p className="main-page__page-title">Modellar turlari</p>
-        <ul className="main-page__list">
-          {listCars?.map((item, index) => (
-            <ModelItemCar
-              like={"like"}
-              key={index}
-              item={item}
-              priceText={"Narxi:"}
-              style={{ textAlign: "left", marginBottom: 8 }}
-              // modelPrice={item.price}
-              // modelImg={item.img}
-            ></ModelItemCar>
-          ))}
-        </ul>
+        {listCars ? (
+          <ul className="main-page__list">
+            {listCars?.map((item, index) => (
+              <ModelItemCar
+                like={"like"}
+                key={index}
+                item={item}
+                priceText={"Narxi:"}
+                style={{ textAlign: "left", marginBottom: 8 }}
+                // modelPrice={item.price}
+                // modelImg={item.img}
+              ></ModelItemCar>
+            ))}
+          </ul>
+        ) : (
+          <div className="loader"></div>
+        )}
       </Container>
     </div>
   );
