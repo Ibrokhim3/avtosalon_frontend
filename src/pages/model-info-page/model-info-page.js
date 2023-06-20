@@ -27,10 +27,11 @@ export const ModelInfoPage = () => {
 
   let selectModel = listCars?.find((item, index) => item._id === id);
 
-  !localStorage.getItem("model") &&
-    localStorage.setItem("model", JSON.stringify(selectModel));
+  // !localStorage.getItem("model") ||
+  //   (JSON.parse(localStorage.getItem("model"))._id !== id &&
+  //     localStorage.setItem("model", JSON.stringify(selectModel)));
 
-  selectModel = JSON.parse(localStorage.getItem("model"));
+  // selectModel = JSON.parse(localStorage.getItem("model"));
 
   const {
     carName,
