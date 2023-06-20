@@ -89,7 +89,7 @@ export const ModelTable = ({
       <tbody>
         {listCars?.map((item, index) => (
           <tr key={index}>
-            <td>{index}</td>
+            <td>{index + 1}</td>
             <td>{item.carName}</td>
             <td>{item.gearbox}</td>
             <td>{item.tonirovka}</td>

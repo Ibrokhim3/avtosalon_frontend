@@ -81,7 +81,7 @@ export const CartegoryTable = ({
       <tbody>
         {listCategory?.map((item, index) => (
           <tr key={index}>
-            <td>{index}</td>
+            <td>{index + 1}</td>
             <td>{item.categoryName}</td>
             <td className="category-table__td-button">
               <button

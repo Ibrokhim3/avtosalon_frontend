@@ -87,7 +87,7 @@ export const UsersTable = ({
       <tbody>
         {users?.map((item, index) => (
           <tr key={index}>
-            <td>{index}</td>
+            <td>{index + 1}</td>
             <td>{item.userEmail}</td>
             <td>{item.userRole}</td>
             <td className="model-table__td-button">

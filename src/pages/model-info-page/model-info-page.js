@@ -31,22 +31,6 @@ export const ModelInfoPage = () => {
     localStorage.setItem("model", JSON.stringify(selectModel));
 
   selectModel = JSON.parse(localStorage.getItem("model"));
-  // useEffect(() => {
-  //   fetch(`${API_URL}/avtosalon/get-model/` + id)
-  //     .then((res) => {
-  //       if (res.status === 200) {
-  //         return res.json();
-  //       }
-  //       return Promise.reject(res);
-  //     })
-  //     .then((data) => {
-  //       console.log(data);
-  //       setModel(data);
-  //     })
-  //     .catch((err) => {
-  //       return console.log(err);
-  //     });
-  // }, []);
 
   const {
     carName,
@@ -167,14 +151,6 @@ export const ModelInfoPage = () => {
                 />
               </SwiperSlide>
             </Swiper>
-            {/* <img
-              width={900}
-              style={{ marginBottom: 16 }}
-              className="model-info-page__model-img"
-              src={carImg}
-              alt="car-img"
-            /> */}
-            {/* <Slider slides={listCars} /> */}
           </div>
         </div>
       </Container>

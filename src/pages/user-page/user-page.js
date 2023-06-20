@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import arrowForward from "../../assets/icons/arrow-forward.svg";
 import arrowLeft from "../../assets/icons/arrow-left.svg";
-import avatarImg from "../../assets/icons/Avatar.svg";
+import avatarImg from "../../assets/icons/avatar3.png";
 import notifIcon from "../../assets/icons/Union.svg";
 import { Aside } from "../../components/aside";
 import { modelsAction } from "../../store";
@@ -103,7 +103,7 @@ export const UserPage = () => {
                   className="user-page__profile-img"
                   width={48}
                   height={48}
-                  src={users?.profileImg}
+                  src={users?.profileImg || avatarImg}
                   alt="profile-image"
                 />
                 <span className="user-page__profile-name">

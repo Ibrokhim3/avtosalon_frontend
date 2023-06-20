@@ -14,14 +14,22 @@ export const ModelItemCar = ({
   modelImg,
   priceText,
   like,
-  item: { carName, carImg, carPrice, _id, likes },
+  item: { carName, carImg, carPrice, _id, likes, purchasedBy },
 }) => {
   const { listCars, formType, listCategory, clickedId } = useSelector(
     (state) => state.models
   );
 
-  const [likeStatus, setLikeStatus] = useState();
-  const [buyStatus, setBuyStatus] = useState();
+  const userLikedStatus = likes?.find(
+    (item, index) => item === JSON.parse(localStorage.getItem("userId"))
+  );
+
+  const userBoughtStatus = purchasedBy?.find(
+    (item, index) => item === JSON.parse(localStorage.getItem("userId"))
+  );
+
+  const [likeStatus, setLikeStatus] = useState(userLikedStatus ? true : false);
+  const [buyStatus, setBuyStatus] = useState(userBoughtStatus ? true : false);
 
   const dispatch = useDispatch();
 
@@ -61,12 +69,12 @@ export const ModelItemCar = ({
   //       return res.json();
   //     })
   //     .then((data) => {
-  //       // dispatch(modelsAction.setListCars(data));
+  //       dispatch(modelsAction.setListCars(data));
   //     })
   //     .catch((err) => {
-  //       return console.log(err);
+  //       return alert(err);
   //     });
-  // }, []);
+  // }, [listCars]);
 
   const onBuyClick = async (e) => {
     const id = e.target.dataset.id;
@@ -85,7 +93,7 @@ export const ModelItemCar = ({
         return res.json();
       })
       .then((data) => {
-        alert(data);
+        alert(data.msg);
         setBuyStatus(data.isBought);
       })
       .catch((err) => {

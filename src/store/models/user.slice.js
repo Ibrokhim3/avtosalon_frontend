@@ -15,7 +15,14 @@ export const { actions: userAction, reducer: userReducer } = createSlice({
       state.token = localStorage.setItem("token", payload);
     },
     setUserRole: (state, { payload }) => {
-      state.userRole = localStorage.setItem("userRole", payload);
+      state.userRole = localStorage.setItem(
+        "userRole",
+        JSON.stringify(payload.userRole)
+      );
+      state.userRole = localStorage.setItem(
+        "userId",
+        JSON.stringify(payload.userId)
+      );
     },
   },
 });
