@@ -6,7 +6,7 @@ import { ModelsPage } from "../pages/models-page";
 import { UserPage } from "../pages/user-page";
 
 const token = localStorage.getItem("token");
-const userRole = localStorage.getItem("userRole");
+const userRole = JSON.parse(localStorage.getItem("userRole"));
 
 const routes = [
   {
@@ -43,15 +43,15 @@ const routes = [
     path: "admin-panel",
     element: <AdminPanel></AdminPanel>,
   },
-  {
-    path: "admin-panel/:id",
-    children: [
-      {
-        path: "",
-        element: <AdminPanel></AdminPanel>,
-      },
-    ],
-  },
+  // {
+  //   path: "admin-panel/:id",
+  //   children: [
+  //     {
+  //       path: "",
+  //       element: <AdminPanel></AdminPanel>,
+  //     },
+  //   ],
+  // },
   {
     path: "user-page",
     element: <UserPage></UserPage>,

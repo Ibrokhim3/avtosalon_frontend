@@ -75,7 +75,7 @@ export const UserTable = ({
               <td>{item.color}</td>
               <td>{item.distance}&nbsp;km</td>
               <td className="model-table__td-button">
-                <span className="purchased">Like</span>
+                <span className="purchased">Liked</span>
               </td>
               <td className=""></td>
               <td>
@@ -90,7 +90,7 @@ export const UserTable = ({
         <tbody>
           {purchasedCars?.map((item, index) => (
             <tr key={index}>
-              <td>{index}</td>
+              <td>{index + 1}</td>
               <td>{item.carName}</td>
               <td>{item.gearbox}</td>
               <td>{item.tonirovka}</td>
@@ -100,7 +100,7 @@ export const UserTable = ({
               <td>{item.distance}&nbsp;km</td>
               <td className="model-table__td-button">
                 <span style={{ background: "orange" }} className="purchased">
-                  Xarid Qilingan
+                  Bought
                 </span>
               </td>
 

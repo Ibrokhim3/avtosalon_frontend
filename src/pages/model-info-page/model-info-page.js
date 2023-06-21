@@ -27,11 +27,11 @@ export const ModelInfoPage = () => {
 
   let selectModel = listCars?.find((item, index) => item._id === id);
 
-  // !localStorage.getItem("model") ||
-  //   (JSON.parse(localStorage.getItem("model"))._id !== id &&
-  //     localStorage.setItem("model", JSON.stringify(selectModel)));
+  if (selectModel) {
+    localStorage.setItem("model", JSON.stringify(selectModel));
+  }
 
-  // selectModel = JSON.parse(localStorage.getItem("model"));
+  selectModel = JSON.parse(localStorage.getItem("model"));
 
   const {
     carName,
@@ -58,7 +58,9 @@ export const ModelInfoPage = () => {
           <div className="model-info-page__info-wrapper">
             <h3 className="model-info-page__model-name">{carName}</h3>
             <p className="model-info-page__model-price">
-              <span className="model-info-page__model-price">{carPrice}</span>
+              <span className="model-info-page__model-price">
+                {carPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
+              </span>
               &nbsp;so‘m dan
             </p>
             <img
@@ -100,7 +102,8 @@ export const ModelInfoPage = () => {
               <li className="model-info-page__item">
                 Umumiy xarajat:&nbsp;
                 <span className="model-info-page__span">
-                  {allExp}&nbsp;so'm dan
+                  {allExp.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
+                  &nbsp;so'm dan
                 </span>
               </li>
             </ul>

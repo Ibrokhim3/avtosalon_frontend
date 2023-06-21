@@ -1,3 +1,3 @@
-export const API_URL = "https://avtosalon-ibrokhim.onrender.com";
+export const API_URL = "http://localhost:2004";
 
-// "http://localhost:2004";
+// "https://avtosalon-ibrokhim.onrender.com"

@@ -144,6 +144,7 @@
   left: 0;
   right: 0;
   background: rgba($color: #f4f4f4, $alpha: 0.8);
+  overflow: auto;
   // left: calc(50% - 549px / 2);
   // top: calc(50% - 532px / 2);
   // overflow: auto; /* Enable scroll if needed */

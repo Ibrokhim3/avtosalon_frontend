@@ -13,7 +13,7 @@ export const Header = ({ style, children, icon }) => {
   const dispatch = useDispatch();
 
   const token = localStorage.getItem("token");
-  const userRole = localStorage.getItem("userRole");
+  const userRole = JSON.parse(localStorage.getItem("userRole"));
   return (
     <header style={style} className="header">
       <div className="header__profile-wrapper">
@@ -32,9 +32,12 @@ export const Header = ({ style, children, icon }) => {
       </div>
       {userRole === "admin" ? (
         <Button
-          onClick={dispatch(modelsAction.setPageType("admin-profile"))}
+          onClick={() => {
+            dispatch(modelsAction.setPageType("admin-profile"));
+            navigate("/admin-panel");
+          }}
           style={{ width: 260 }}
-          to={"/admin-panel"}
+          // to={"/admin-panel"}
         >
           <img src={adminIcon} alt="admin-icon" />
           {/* Login */}

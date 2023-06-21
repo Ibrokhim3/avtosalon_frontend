@@ -94,7 +94,7 @@ export const ModelItemCar = ({
       })
       .then((data) => {
         alert(data.msg);
-        setBuyStatus(data.isBought);
+        setBuyStatus(userBoughtStatus === false ? true : buyStatus);
       })
       .catch((err) => {
         alert(err);
@@ -140,7 +140,7 @@ export const ModelItemCar = ({
         </p>
         <p style={{ textAlign: "left" }} className="model-item__car-price">
           <span className="model-item__car-price-text">{priceText}</span>{" "}
-          {carPrice} so'm
+          {carPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} so'm
         </p>
       </Link>
       <div className="model-item__button-wrapper">

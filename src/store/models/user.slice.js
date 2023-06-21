@@ -5,7 +5,9 @@ export const { actions: userAction, reducer: userReducer } = createSlice({
   initialState: {
     users: null,
     token: localStorage.getItem("token"),
-    userRole: localStorage.getItem("userRole"),
+    userRole:
+      localStorage.getItem("userRole") &&
+      JSON.parse(localStorage.getItem("userRole")),
   },
   reducers: {
     setUsers: (state, { payload }) => {

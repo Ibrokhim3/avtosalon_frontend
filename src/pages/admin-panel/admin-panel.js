@@ -16,6 +16,7 @@ import notifIcon from "../../assets/icons/Union.svg";
 import { Aside } from "../../components/aside";
 import { ModelTable } from "../../components/model-table";
 import { modelsAction } from "../../store";
+import { useEffect } from "react";
 
 export const AdminPanel = () => {
   const { listCategory, loading, error } = useSelector((state) => state.models);
@@ -48,7 +49,7 @@ export const AdminPanel = () => {
               <button
                 className="profile-button profile-button-1"
                 onClick={() => {
-                  localStorage.setItem("token", "");
+                  localStorage.clear();
                   navigate("/login");
                 }}
               >

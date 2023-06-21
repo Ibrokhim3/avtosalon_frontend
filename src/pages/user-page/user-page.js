@@ -91,8 +91,7 @@ export const UserPage = () => {
               <button
                 className="profile-button profile-button-1"
                 onClick={() => {
-                  localStorage.setItem("token", "");
-                  localStorage.setItem("userRole", "");
+                  localStorage.clear();
                   navigate("/login");
                 }}
               >
